@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/Levanto-Financial/ember-intercom-io.svg?branch=master)](https://travis-ci.org/Levanto-Financial/ember-intercom-io)
 [![Code Climate](https://codeclimate.com/github/Levanto-Financial/ember-intercom-io/badges/gpa.svg)](https://codeclimate.com/github/Levanto-Financial/ember-intercom-io)
+[![Dependency Status](https://david-dm.org/Levanto-Financial/ember-intercom-io.svg)](https://david-dm.org/Levanto-Financial/ember-intercom-io)
+[![devDependency Status](https://david-dm.org/Levanto-Financial/ember-intercom-io/dev-status.svg)](https://david-dm.org/Levanto-Financial/ember-intercom-io#info=devDependencies)
 
 [Intercom.io](http://intercom.io) for Ember.js apps. 
 
