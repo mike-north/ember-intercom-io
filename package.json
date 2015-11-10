@@ -1,5 +1,5 @@
 {
-  "name": "ember-intercom",
+  "name": "ember-cli-intercom",
   "version": "0.0.1",
   "description": "Intercom.io for ember.js apps",
   "directories": {

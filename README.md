@@ -1,4 +1,4 @@
-# ember-intercom
+# ember-cli-intercom
 
 [![Build Status](https://travis-ci.org/Levanto-Financial/ember-intercom.svg?branch=master)](https://travis-ci.org/Levanto-Financial/ember-intercom)
 [![Code Climate](https://codeclimate.com/github/Levanto-Financial/ember-intercom/badges/gpa.svg)](https://codeclimate.com/github/Levanto-Financial/ember-intercom)
