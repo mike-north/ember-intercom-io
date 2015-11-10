@@ -1,5 +1,5 @@
 {
-  "name": "ember-cli-intercom",
+  "name": "ember-intercom-io",
   "version": "0.0.1",
   "description": "Idiomatic, deep Intercom.io integration for ember.js apps",
   "directories": {
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/Levanto-Financial/ember-intercom",
+  "repository": "https://github.com/Levanto-Financial/ember-intercom-io",
   "engines": {
     "node": ">= 0.10.0"
   },

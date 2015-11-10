@@ -1,7 +1,7 @@
-# ember-cli-intercom
+# ember-intercom-io
 
-[![Build Status](https://travis-ci.org/Levanto-Financial/ember-cli-intercom.svg?branch=master)](https://travis-ci.org/Levanto-Financial/ember-cli-intercom)
-[![Code Climate](https://codeclimate.com/github/Levanto-Financial/ember-cli-intercom/badges/gpa.svg)](https://codeclimate.com/github/Levanto-Financial/ember-cli-intercom)
+[![Build Status](https://travis-ci.org/Levanto-Financial/ember-intercom-io.svg?branch=master)](https://travis-ci.org/Levanto-Financial/ember-intercom-io)
+[![Code Climate](https://codeclimate.com/github/Levanto-Financial/ember-intercom-io/badges/gpa.svg)](https://codeclimate.com/github/Levanto-Financial/ember-intercom-io)
 
 [Intercom.io](http://intercom.io) for Ember.js apps. 
 
@@ -9,7 +9,7 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Setup
 
-**Install this addon with ember-cli** `ember install ember-cli-intercom`
+**Install this addon with ember-cli** `ember install ember-intercom-io`
 
 **Add the `{{intercom-io}}` component to one of your templates`**
 The chat widget will appear whenever this component has been rendered, and should disappear whenever it's destroyed.

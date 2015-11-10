@@ -1,1 +1,1 @@
-export { default } from 'ember-cli-intercom/components/intercom-io';
+export { default } from 'ember-intercom-io/components/intercom-io';

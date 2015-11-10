@@ -1,5 +1,5 @@
 module.exports = {
-  description: ''
+  description: 'ember-intercom-io installation blueprint'
 
   // locals: function(options) {
   //   // Return custom template variables here.
