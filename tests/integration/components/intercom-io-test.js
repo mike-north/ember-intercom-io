@@ -1,26 +1,39 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import intercomSvc from '../../../services/intercom';
+
+let intercomCommandArgs = { };
+
+let intercomStub = function(command, arg) {
+  if (!intercomCommandArgs[command]) {
+    intercomCommandArgs[command] = [];
+  }
+  intercomCommandArgs[command].push(arg || null);
+};
+
+let _oldIntercom = null;
 
 moduleForComponent('intercom-io', 'Integration | Component | intercom io', {
-  integration: true
+  integration: true,
+
+  beforeEach() {
+    _oldIntercom = window.Intercom;
+    window.Intercom = intercomStub;
+    this.register('service:intercom', intercomSvc);
+    this.inject.service('intercom');
+  },
+  afterEach() {
+    window.Intercom = _oldIntercom || function() {};
+  }
 });
 
 test('it renders', function(assert) {
-  assert.expect(2);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
+  let oldStartCount = (intercomCommandArgs['boot'] || []).length;
   this.render(hbs`{{intercom-io}}`);
 
   assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#intercom-io}}
-      template block text
-    {{/intercom-io}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(intercomCommandArgs['boot'].length - oldStartCount, 1, 'Intercom service "start" was invoked');
 });
+
+

@@ -6,7 +6,7 @@ function setupIntercom() {
     var ic = w.Intercom;
     if (typeof ic === "function") {
       ic('reattach_activator');
-      ic('update', intercomSettings);
+      ic('update', {});
     } else {
       var d = document;
       var i = function() {
@@ -34,8 +34,6 @@ function setupIntercom() {
     }
   })();
 }
-
-
 
 export function initialize( /* container, application */ ) {
   setupIntercom();
