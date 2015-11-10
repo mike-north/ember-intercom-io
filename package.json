@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-intercom",
   "version": "0.0.1",
-  "description": "Intercom.io for ember.js apps",
+  "description": "Idiomatic, deep Intercom.io integration for ember.js apps",
   "directories": {
     "doc": "doc",
     "test": "tests"

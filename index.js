@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-intercom'
+  name: 'ember-cli-intercom'
 };

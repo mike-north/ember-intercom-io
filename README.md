@@ -9,7 +9,7 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Setup
 
-**Install this addon with ember-cli** `ember install ember-intercom`
+**Install this addon with ember-cli** `ember install ember-cli-intercom`
 
 **Add the `{{intercom-io}}` component to one of your templates`**
 The chat widget will appear whenever this component has been rendered, and should disappear whenever it's destroyed.
