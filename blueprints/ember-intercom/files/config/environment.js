@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'dummy',
+    modulePrefix: '<%= modulePrefix %>',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
@@ -37,7 +37,7 @@ module.exports = function(environment) {
         '\'unsafe-inline\''].join(' ')
     },
     intercom: {
-      appId: ''
+      appId: null // <-- REPLACE WITH YOUR INTERCOM.IO app_id
     },
     APP: {
       // Here you can pass flags/options to your application instance

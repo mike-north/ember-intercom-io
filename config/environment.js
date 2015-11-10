@@ -1,5 +1,14 @@
 'use strict';
 
 module.exports = function(/* environment, appConfig */) {
-  return { };
+  return {
+    intercom: {
+      appId: null,
+      userProperties: {
+        nameProp: 'name',
+        emailProp: 'email',
+        createdAtProp: 'createdAt'
+      }
+    }
+  };
 };

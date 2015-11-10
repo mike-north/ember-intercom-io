@@ -1,0 +1,1 @@
+export { default } from 'ember-intercom/components/intercom-io';

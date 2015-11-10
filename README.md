@@ -1,6 +1,13 @@
-# Ember-intercom
+# ember-intercom
+
+[Intercom.io](http://intercom.io) for Ember.js apps. 
 
 This README outlines the details of collaborating on this Ember addon.
+
+## Setup
+
+**Install this addon** `ember install ember-intercom`
+
 
 ## Installation
 
