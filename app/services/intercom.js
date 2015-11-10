@@ -9,8 +9,8 @@ const USER_CREATED_AT_PROP = `user.${Ember.get(config, 'intercom.userProperties.
 
 export default Service.extend({
   user: {
-    name: 'Mike North',
-    email: 'michael.l.north@gmail.com'
+    name: null,
+    email: null
   },
 
   _hasUserContext: computed('user', USER_NAME_PROP, USER_EMAIL_PROP, USER_CREATED_AT_PROP, function() {
