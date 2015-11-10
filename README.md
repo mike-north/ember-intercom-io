@@ -26,6 +26,8 @@ module.exports = function(environment) {
 };
 
 ```
+
+
 #### Users vs Leads
 
 In the intercom.io world, a lead is a visitor to your site or app, without an email or name associated with them. A user has a name and email, and is a good construct for tracking the history of all interactions w/ a single person.
