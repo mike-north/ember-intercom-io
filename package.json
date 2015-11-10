@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/mike-north/ember-intercom",
+  "repository": "https://github.com/Levanto-Financial/ember-intercom",
   "engines": {
     "node": ">= 0.10.0"
   },
