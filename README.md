@@ -41,7 +41,7 @@ import Ember from 'ember';
 const { inject } = Ember;
 
 export default Ember.Service.extend({
-  intercom: inject.service(),
+  intercom: inject.service(), // the intercom service
   didLogin(user) {
     ...
     this.get('intercom').set('user.name', 'Joe Username');
@@ -50,7 +50,7 @@ export default Ember.Service.extend({
   }
 });
 
-``
+```
 
 ## Installation
 
