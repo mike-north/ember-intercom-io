@@ -1,5 +1,8 @@
 # ember-intercom
 
+[![Build Status](https://travis-ci.org/Levanto-Financial/ember-intercom.svg?branch=master)](https://travis-ci.org/Levanto-Financial/ember-intercom)
+[![Code Climate](https://codeclimate.com/github/Levanto-Financial/ember-intercom/badges/gpa.svg)](https://codeclimate.com/github/Levanto-Financial/ember-intercom)
+
 [Intercom.io](http://intercom.io) for Ember.js apps. 
 
 This README outlines the details of collaborating on this Ember addon.
