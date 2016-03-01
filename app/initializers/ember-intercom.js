@@ -2,35 +2,28 @@ import config from '../config/environment';
 
 function setupIntercom() {
   (function() {
-    var w = window;
-    var ic = w.Intercom;
+    const ic = window.Intercom;
     if (typeof ic === "function") {
       ic('reattach_activator');
       ic('update', {});
     } else {
-      var d = document;
-      var i = function() {
-        i.c(arguments)
+      const d = document;
+      const i = function() {
+        i.c(arguments);
       };
       i.q = [];
       i.c = function(args) {
         i.q.push(args)
       };
-      w.Intercom = i;
+      window.Intercom = i;
 
-      function l() {
-        var s = d.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = `https://widget.intercom.io/widget/${Ember.get(config, 'intercom.appId')}`;
-        var x = d.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-      }
-      if (w.attachEvent) {
-        w.attachEvent('onload', l);
-      } else {
-        w.addEventListener('load', l, false);
-      }
+      const s = d.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = `https://widget.intercom.io/widget/${Ember.get(config, 'intercom.appId')}`;
+      const x = d.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+
     }
   })();
 }
