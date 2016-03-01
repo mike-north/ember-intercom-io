@@ -2,10 +2,10 @@ import Ember from 'ember';
 import { initialize } from '../../../initializers/ember-intercom';
 import { module, test } from 'qunit';
 
-var registry, application;
+let registry, application;
 
 module('Unit | Initializer | ember intercom', {
-  beforeEach: function() {
+  beforeEach() {
     Ember.run(function() {
       application = Ember.Application.create();
       registry = application.registry;

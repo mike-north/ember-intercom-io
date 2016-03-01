@@ -37,7 +37,7 @@ module.exports = function(environment) {
         '\'unsafe-inline\''].join(' ')
     },
     intercom: {
-      appId: ''
+      appId: 'e8moi2hb'
     },
     APP: {
       // Here you can pass flags/options to your application instance
