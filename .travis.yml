@@ -6,9 +6,6 @@ cache:
   directories:
   - node_modules
 env:
-- EMBER_TRY_SCENARIO=ember-1.10
-- EMBER_TRY_SCENARIO=ember-1.11
-- EMBER_TRY_SCENARIO=ember-1.12
 - EMBER_TRY_SCENARIO=ember-1.13
 - EMBER_TRY_SCENARIO=ember-2.1
 - EMBER_TRY_SCENARIO=ember-2.2
