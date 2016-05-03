@@ -29,7 +29,9 @@ function setupIntercom() {
 }
 
 export function initialize( /* container, application */ ) {
-  setupIntercom();
+  if (typeof FastBoot === 'undefined') {
+    setupIntercom();
+  }
 }
 
 export default {
