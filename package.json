@@ -1,6 +1,6 @@
 {
   "name": "ember-intercom-io",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Idiomatic, deep Intercom.io integration for ember.js apps",
   "directories": {
     "doc": "doc",
