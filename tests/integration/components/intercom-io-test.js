@@ -14,6 +14,17 @@ let intercomStub = function(command, arg) {
 
 let _oldIntercom = null;
 
+const mockConfig = {
+  intercom: {
+    userProperties: {
+      nameProp: 'name',
+      emailProp: 'email',
+      createdAtProp: 'createdAt'
+    },
+    appId: '1'
+  }
+};
+
 moduleForComponent('intercom-io', 'Integration | Component | intercom io', {
   integration: true,
 
@@ -22,6 +33,8 @@ moduleForComponent('intercom-io', 'Integration | Component | intercom io', {
     window.Intercom = intercomStub;
     this.register('service:intercom', intercomSvc);
     this.inject.service('intercom');
+
+    this.register('config:environment', mockConfig);
   },
   afterEach() {
     window.Intercom = _oldIntercom || function() {};

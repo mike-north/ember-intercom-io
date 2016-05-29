@@ -1,15 +1,19 @@
 import Ember from 'ember';
 
-const { inject } = Ember;
+const {
+  Component,
+  get,
+  inject
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   intercom: inject.service(),
   didInsertElement() {
     this._super(...arguments);
-    this.get('intercom').start();
+    get(this, 'intercom').start();
   },
   willDestroyElement() {
     this._super(...arguments);
-    this.get('intercom').stop();
+    get(this, 'intercom').stop();
   }
 });

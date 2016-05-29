@@ -1,4 +1,9 @@
+import Ember from 'ember';
 import config from '../config/environment';
+
+const {
+  get
+} = Ember;
 
 function setupIntercom() {
   (function() {
@@ -13,14 +18,14 @@ function setupIntercom() {
       };
       i.q = [];
       i.c = function(args) {
-        i.q.push(args)
+        i.q.push(args);
       };
       window.Intercom = i;
 
       const s = d.createElement('script');
       s.type = 'text/javascript';
       s.async = true;
-      s.src = `https://widget.intercom.io/widget/${Ember.get(config, 'intercom.appId')}`;
+      s.src = `https://widget.intercom.io/widget/${get(config, 'intercom.appId')}`;
       const x = d.getElementsByTagName('script')[0];
       x.parentNode.insertBefore(s, x);
 
