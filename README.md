@@ -53,6 +53,7 @@ export default Ember.Service.extend({
     this.get('intercom').set('user.name', 'Joe Username');
     this.get('intercom').set('user.email', 'joe@example.com');
     this.get('intercom').set('user.createdAt', 1447135065173);
+    this.get('intercom').set('user.userHash', USER_HASH)
   }
 });
 

@@ -6,6 +6,7 @@ const { Service, computed, run: { next, scheduleOnce } } = Ember;
 const USER_NAME_PROP = `user.${Ember.get(config, 'intercom.userProperties.nameProp')}`;
 const USER_EMAIL_PROP = `user.${Ember.get(config, 'intercom.userProperties.emailProp')}`;
 const USER_CREATED_AT_PROP = `user.${Ember.get(config, 'intercom.userProperties.createdAtProp')}`;
+const USER_HASH_PROP = `user.${Ember.get(config, 'intercom.userProperties.userHashProp')}`;
 
 export default Service.extend({
   user: {
@@ -13,7 +14,7 @@ export default Service.extend({
     email: null
   },
 
-  _hasUserContext: computed('user', USER_NAME_PROP, USER_EMAIL_PROP, USER_CREATED_AT_PROP, function() {
+  _hasUserContext: computed('user', USER_NAME_PROP, USER_EMAIL_PROP, USER_CREATED_AT_PROP, USER_HASH_PROP, function() {
     return !!this.get('user')
       && !!this.get(USER_NAME_PROP)
       && !!this.get(USER_EMAIL_PROP)
@@ -29,6 +30,9 @@ export default Service.extend({
       obj.email = this.get(USER_EMAIL_PROP);
       if (this.get(USER_CREATED_AT_PROP)) {
         obj.created_at = this.get(USER_CREATED_AT_PROP);
+      }
+      if (this.get(USER_HASH_PROP)) {
+        obj.user_hash = this.get(USER_HASH_PROP)
       }
     }
 
