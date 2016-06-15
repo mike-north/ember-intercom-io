@@ -1,19 +1,30 @@
 import Ember from 'ember';
 
 const {
-  assign,
   get,
   Service,
   computed,
   assert,
-  typeOf,
   inject,
+  typeOf,
+  getOwner,
   run: { scheduleOnce }
 } = Ember;
 
+// Handle multi browser support for Ember 2.4+
+const assign = Object.assign || Ember.assign;
+
 export default Service.extend({
   intercom: inject.service('intercom-instance'),
-  config: inject.service(),
+  config: computed(function() {
+    if (typeOf(getOwner) === 'function') {
+      return getOwner(this).resolveRegistration('config:environment');
+    } else {
+      // Handle Ember < 2.3
+      // http://emberjs.com/deprecations/v2.x/#toc_id-ember-application-injected-container
+      return this.container.lookupFactory('config:environment');
+    }
+  }),
 
   _userNameProp: computed('config.intercom.userProperties.nameProp', function() {
     return get(this, `user.${get(this, 'config.intercom.userProperties.nameProp')}`);
@@ -61,13 +72,7 @@ export default Service.extend({
 
   start(bootConfig = {}) {
     let _bootConfig = get(this, '_intercomBootConfig');
-
-    // Handle multi browser support for Ember 2.4+
-    if (typeOf(Object.assign) === 'function') {
-      Object.assign(_bootConfig, bootConfig);
-    } else {
-      assign(_bootConfig, bootConfig);
-    }
+    assign(_bootConfig, bootConfig);
 
     scheduleOnce('afterRender', () => get(this, 'intercom')('boot', _bootConfig));
   },

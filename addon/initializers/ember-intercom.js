@@ -34,11 +34,14 @@ function setupIntercom(config) {
 
 export function initialize(application) {
   if (typeof FastBoot === 'undefined') {
-    if (arguments[1]) { // Ember < 2.1
-      application = arguments[1];
+    let config;
+
+    if (application.resolveRegistration) {
+      config = application.resolveRegistration('config:environment');
+    } else {
+      config = application.registry.resolve('config:environment');
     }
 
-    let config = application.resolveRegistration('config:environment');
     setupIntercom(config);
 
     application.register('service:intercom-instance', window.Intercom, { instantiate: false });
