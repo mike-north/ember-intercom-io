@@ -1,4 +1,3 @@
 {
-  "preset": "ember-suave",
-  "requireCamelCaseOrUpperCaseIdentifiers": false
+  "preset": "ember-suave"
 }

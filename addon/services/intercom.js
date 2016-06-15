@@ -1,29 +1,19 @@
 import Ember from 'ember';
 
 const {
+  assign,
   get,
   Service,
   computed,
   assert,
   typeOf,
-  getOwner,
+  inject,
   run: { scheduleOnce }
 } = Ember;
 
 export default Service.extend({
-  config: computed(function() {
-    if (typeOf(getOwner) === 'function') {
-      return getOwner(this).resolveRegistration('config:environment');
-    } else {
-      // Handle Ember < 2.3
-      // http://emberjs.com/deprecations/v2.x/#toc_id-ember-application-injected-container
-      return this.container.lookupFactory('config:environment');
-    }
-  }),
-
-  intercom: computed(function() {
-    return window.Intercom;
-  }),
+  intercom: inject.service('intercom-instance'),
+  config: inject.service(),
 
   _userNameProp: computed('config.intercom.userProperties.nameProp', function() {
     return get(this, `user.${get(this, 'config.intercom.userProperties.nameProp')}`);
@@ -43,13 +33,16 @@ export default Service.extend({
   },
 
   _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-    return !!get(this, 'user') && !!get(this, '_userNameProp') && !!get(this, '_userEmailProp');
+    return !!get(this, 'user') &&
+           !!get(this, '_userNameProp') &&
+           !!get(this, '_userEmailProp');
   }),
 
   _intercomBootConfig: computed('_hasUserContext', function() {
     let appId = get(this, 'config.intercom.appId');
     assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
 
+    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
     let obj = {
       app_id: appId
     };
@@ -61,13 +54,20 @@ export default Service.extend({
         obj.created_at = get(this, '_userCreatedAtProp');
       }
     }
+    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
 
     return obj;
   }),
 
   start(bootConfig = {}) {
     let _bootConfig = get(this, '_intercomBootConfig');
-    Object.assign(_bootConfig, bootConfig);
+
+    // Handle multi browser support for Ember 2.4+
+    if (typeOf(Object.assign) === 'function') {
+      Object.assign(_bootConfig, bootConfig);
+    } else {
+      assign(_bootConfig, bootConfig);
+    }
 
     scheduleOnce('afterRender', () => get(this, 'intercom')('boot', _bootConfig));
   },

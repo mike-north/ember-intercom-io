@@ -44,6 +44,7 @@ test('it adds the correct user context to the boot config', function(assert) {
     custom: actualUser.custom
   }));
 
+  // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
   let expectedBootConfig = {
     app_id: mockConfig.intercom.appId,
     name: actualUser.name,
@@ -51,6 +52,7 @@ test('it adds the correct user context to the boot config', function(assert) {
     created_at: actualUser.createdAt,
     custom: actualUser.custom
   };
+  // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
 
   assert.ok(intercomStub.calledOnce, 'it called the intercom module');
   sinon.assert.calledWith(intercomStub, 'boot', expectedBootConfig);
