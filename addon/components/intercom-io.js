@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
-const { inject } = Ember;
+const { Component, inject } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   intercom: inject.service(),
   didInsertElement() {
     this._super(...arguments);

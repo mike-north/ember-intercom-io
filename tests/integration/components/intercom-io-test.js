@@ -3,6 +3,8 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import intercomSvc from '../../../services/intercom';
 
+const { run } = Ember;
+
 let intercomCommandArgs = { };
 
 let intercomStub = function(command, arg) {
@@ -34,7 +36,7 @@ test('it renders', function(assert) {
   this.render(hbs`{{intercom-io}}`);
 
   assert.equal(this.$().text().trim(), '');
-  Ember.run.next(() => {
+  run.next(() => {
     assert.equal(intercomCommandArgs.boot.length - oldStartCount, 1, 'Intercom service "start" was invoked');
   });
 

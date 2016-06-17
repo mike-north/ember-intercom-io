@@ -4,10 +4,12 @@ import { module, test } from 'qunit';
 
 let registry, application;
 
+const { Application, run } = Ember;
+
 module('Unit | Initializer | ember intercom', {
   beforeEach() {
-    Ember.run(function() {
-      application = Ember.Application.create();
+    run(function() {
+      application = Application.create();
       registry = application.registry;
       application.deferReadiness();
     });
