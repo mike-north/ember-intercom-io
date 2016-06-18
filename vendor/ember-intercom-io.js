@@ -24,7 +24,7 @@
       i.c = function(args) {
         i.q.push(args);
       };
-      debugger;
+
       window.Intercom = i;
 
       var s = d.createElement('script');
