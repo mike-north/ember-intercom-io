@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Intercom from 'intercom';
+import intercom from 'intercom';
 
 const {
   get,
@@ -7,8 +7,6 @@ const {
   assign: emberAssign,
   computed,
   assert,
-  typeOf,
-  getOwner,
   run: { scheduleOnce }
 } = Ember;
 
@@ -16,29 +14,18 @@ const {
 const assign = Object.assign || emberAssign;
 
 export default Service.extend({
-  // intercom: computed(function() {
-  //   return new Intercom();
-  // }),
-  config: computed(function() {
-    if (typeOf(getOwner) === 'function') {
-      return getOwner(this).resolveRegistration('config:environment');
-    } else {
-      // Handle Ember < 2.3
-      // http://emberjs.com/deprecations/v2.x/#toc_id-ember-application-injected-container
-      return this.container.lookupFactory('config:environment');
-    }
+  api: intercom,
+
+  _userNameProp: computed('config.userProperties.nameProp', function() {
+    return get(this, `user.${get(this, 'config.userProperties.nameProp')}`);
   }),
 
-  _userNameProp: computed('config.intercom.userProperties.nameProp', function() {
-    return get(this, `user.${get(this, 'config.intercom.userProperties.nameProp')}`);
+  _userEmailProp: computed('config.userProperties.emailProp', function() {
+    return get(this, `user.${get(this, 'config.userProperties.emailProp')}`);
   }),
 
-  _userEmailProp: computed('config.intercom.userProperties.emailProp', function() {
-    return get(this, `user.${get(this, 'config.intercom.userProperties.emailProp')}`);
-  }),
-
-  _userCreatedAtProp: computed('config.intercom.userProperties.createdAtProp', function() {
-    return get(this, `user.${get(this, 'config.intercom.userProperties.createdAtProp')}`);
+  _userCreatedAtProp: computed('config.userProperties.createdAtProp', function() {
+    return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
   }),
 
   user: {
@@ -53,7 +40,7 @@ export default Service.extend({
   }),
 
   _intercomBootConfig: computed('_hasUserContext', function() {
-    let appId = get(this, 'config.intercom.appId');
+    let appId = get(this, 'config.appId');
     assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
 
     // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
@@ -76,16 +63,16 @@ export default Service.extend({
   start(bootConfig = {}) {
     let _bootConfig = get(this, '_intercomBootConfig');
     assign(_bootConfig, bootConfig);
-
-    debugger;
-    scheduleOnce('afterRender', () => Intercom('boot', _bootConfig));
+    scheduleOnce('afterRender', () => {
+      return this.get('api')('boot', _bootConfig);
+    });
   },
 
   stop() {
-    scheduleOnce('afterRender', () => Intercom('shutdown'));
+    scheduleOnce('afterRender', () => this.get('api')('shutdown'));
   },
 
   update(properties = {}) {
-    scheduleOnce('afterRender', () => Intercom('update', properties));
+    scheduleOnce('afterRender', () => this.get('api')('update', properties));
   }
 });

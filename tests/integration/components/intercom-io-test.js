@@ -4,7 +4,6 @@ import {
   test
 } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import intercomSvc from '../../../services/intercom';
 
 const {
   run
@@ -35,10 +34,8 @@ moduleForComponent('intercom-io', 'Integration | Component | intercom io', {
 
   beforeEach() {
     this.register('service:config', mockConfig, { instantiate: false });
-    this.register('service:intercom-instance', intercomStub, { instantiate: false });
-
-    this.register('service:intercom', intercomSvc);
     this.inject.service('intercom');
+    this.set('intercom.api', intercomStub);
   }
 });
 

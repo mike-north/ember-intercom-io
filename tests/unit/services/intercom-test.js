@@ -8,8 +8,6 @@ const {
   set
 } = Ember;
 
-moduleFor('service:intercom', 'Unit | Service | intercom');
-
 const mockConfig = {
   intercom: {
     userProperties: {
@@ -21,6 +19,19 @@ const mockConfig = {
   }
 };
 
+let intercomStub = null;
+
+moduleFor('service:intercom', 'Unit | Service | intercom', {
+  beforeEach() {
+    this.register('service:config', mockConfig, { instantiate: false });
+
+    intercomStub = sinon.stub();
+
+    this.subject().set('api', intercomStub);
+    this.subject().set('config', mockConfig.intercom);
+  }
+});
+
 test('it adds the correct user context to the boot config', function(assert) {
   let actualUser = {
     name: 'foo',
@@ -29,12 +40,7 @@ test('it adds the correct user context to the boot config', function(assert) {
     custom: 'my-custom-property'
   };
 
-  let intercomStub = sinon.stub();
-
-  let service = this.subject({
-    config: mockConfig,
-    intercom: intercomStub
-  });
+  let service = this.subject();
 
   set(service.user, 'email', actualUser.email);
   set(service.user, 'name', actualUser.name);
