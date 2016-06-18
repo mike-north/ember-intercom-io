@@ -3,15 +3,12 @@ import intercom from 'intercom';
 
 const {
   get,
+  merge,
   Service,
-  assign: emberAssign,
   computed,
   assert,
   run: { scheduleOnce }
 } = Ember;
-
-// Handle multi browser support for Ember 2.4+
-const assign = Object.assign || emberAssign;
 
 export default Service.extend({
   api: intercom,
@@ -61,8 +58,7 @@ export default Service.extend({
   }),
 
   start(bootConfig = {}) {
-    let _bootConfig = get(this, '_intercomBootConfig');
-    assign(_bootConfig, bootConfig);
+    let _bootConfig = merge(get(this, '_intercomBootConfig'), bootConfig);
     scheduleOnce('afterRender', () => {
       return this.get('api')('boot', _bootConfig);
     });
