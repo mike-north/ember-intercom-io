@@ -26,7 +26,9 @@ The chat widget will appear whenever this component has been rendered, and shoul
 module.exports = function(environment) {
   ...
   intercom: {
-    appId: null // <-- REPLACE WITH YOUR INTERCOM.IO app_id
+    appId: null, // <-- REPLACE WITH YOUR INTERCOM.IO app_id
+    deferReadinessUntilLoaded: false 
+    // ^ Optionally wait until intercom widget is initialized before booting your ember app (false by default)
   },
   ...
 };
