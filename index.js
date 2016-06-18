@@ -8,9 +8,7 @@ module.exports = {
 
   included(app) {
     this._super.included(app);
-    if (process.env.EMBER_CLI_FASTBOOT !== 'true') {
-      app.import('vendor/intercom-shim.js');
-    }
+    app.import('vendor/intercom-shim.js');
   },
 
   treeForVendor() {
