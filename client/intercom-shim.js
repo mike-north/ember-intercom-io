@@ -3,13 +3,29 @@
   'use strict';
 
   function l(config) {
-    var d = w.document;
-    var s = d.createElement('script');
+    let i = function() {
+      i.c(arguments);
+    };
+    i.q = [];
+    i.c = function(args) {
+      i.q.push(args);
+    };
+
+    window.Intercom = i;
+
+    let d = document;
+    let s = d.createElement('script');
     s.type = 'text/javascript';
     s.async = true;
-    s.src = 'https://widget.intercom.io/widget/' + config.intercom.appId;
-    var x = d.getElementsByTagName('script')[0];
+    s.src = `https://widget.intercom.io/widget/${config.intercom.appId}`;
+    let x = d.getElementsByTagName('script')[0];
     x.parentNode.insertBefore(s, x);
+  }
+
+  let ic = window.Intercom;
+  if (typeof ic === 'function') {
+    ic('reattach_activator');
+    ic('update', {});
   }
 
   function generateModule(name, values) {
@@ -20,24 +36,10 @@
     });
   }
 
-  var w = window;
-  var ic = w.Intercom;
-  if (typeof ic === 'function') {
-    ic('reattach_activator');
-    ic('update', intercomSettings);
-  } else {
-    var i = function() {
-      i.c(arguments);
-    };
-    i.q = [];
-    i.c = function(args) {
-      i.q.push(args);
-    };
-    w.Intercom = i;
-  }
-
   generateModule('intercom', {
-    default: w.Intercom,
+    default() {
+      return window.Intercom.apply(this, arguments);
+    },
     _setup: l
   });
 })();
