@@ -3,7 +3,7 @@
   'use strict';
 
   function l(config) {
-    let i = function() {
+    var i = function() {
       i.c(arguments);
     };
     i.q = [];
@@ -13,16 +13,16 @@
 
     window.Intercom = i;
 
-    let d = document;
-    let s = d.createElement('script');
+    var d = document;
+    var s = d.createElement('script');
     s.type = 'text/javascript';
     s.async = true;
     s.src = `https://widget.intercom.io/widget/${config.intercom.appId}`;
-    let x = d.getElementsByTagName('script')[0];
+    var x = d.getElementsByTagName('script')[0];
     x.parentNode.insertBefore(s, x);
   }
 
-  let ic = window.Intercom;
+  var ic = window.Intercom;
   if (typeof ic === 'function') {
     ic('reattach_activator');
     ic('update', {});
@@ -38,7 +38,7 @@
 
   generateModule('intercom', {
     default() {
-      return window.Intercom.apply(this, arguments);
+      return window.Intercom.apply(null, arguments);
     },
     _setup: l
   });

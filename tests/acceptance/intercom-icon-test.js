@@ -16,6 +16,5 @@ test('visiting /help renders the intercom icon', function(assert) {
     run.later(() => {
       assert.equal($('#intercom-container').length, 1);
     }, 1000);
-
   });
 });
