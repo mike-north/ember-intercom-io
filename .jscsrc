@@ -1,3 +1,6 @@
 {
-  "preset": "ember-suave"
+  "preset": "ember-suave",
+  "excludeFiles": [
+    "./client/intercom-shim.js"
+  ]
 }

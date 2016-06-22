@@ -1,5 +1,5 @@
 (function() {
-  /* globals define, Intercom */
+  /* globals define */
   'use strict';
 
   function l(config) {
@@ -17,7 +17,7 @@
     var s = d.createElement('script');
     s.type = 'text/javascript';
     s.async = true;
-    s.src = `https://widget.intercom.io/widget/${config.intercom.appId}`;
+    s.src = 'https://widget.intercom.io/widget/' + config.intercom.appId;
     var x = d.getElementsByTagName('script')[0];
     x.parentNode.insertBefore(s, x);
   }
@@ -30,14 +30,14 @@
 
   function generateModule(name, values) {
     define(name, [], function() {
-      'use strict';
+      'use strict'; // jshint ignore:line
 
       return values;
     });
   }
 
   generateModule('intercom', {
-    default() {
+    default: function() {
       return window.Intercom.apply(null, arguments);
     },
     _setup: l
