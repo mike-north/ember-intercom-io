@@ -14,15 +14,23 @@ export default Service.extend({
   api: intercom,
 
   _userNameProp: computed('config.userProperties.nameProp', function() {
-    return get(this, `user.${get(this, 'config.userProperties.nameProp')}`);
+    return `user.${get(this, 'config.userProperties.nameProp')}`;
   }),
 
   _userEmailProp: computed('config.userProperties.emailProp', function() {
-    return get(this, `user.${get(this, 'config.userProperties.emailProp')}`);
+    return `user.${get(this, 'config.userProperties.emailProp')}`;
   }),
 
   _userCreatedAtProp: computed('config.userProperties.createdAtProp', function() {
-    return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
+    return `user.${get(this, 'config.userProperties.createdAtProp')}`;
+  }),
+
+  _userIdProp: computed('config.userProperties.idProp', function() {
+    return `user.${get(this, 'config.userProperties.idProp')}`;
+  }),
+
+  _userHashProp: computed('config.userProperties.hashProp', function() {
+    return `user.${get(this, 'config.userProperties.hashProp')}`;
   }),
 
   user: {
@@ -31,12 +39,17 @@ export default Service.extend({
   },
 
   _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-    return !!get(this, 'user') &&
-           !!get(this, '_userNameProp') &&
-           !!get(this, '_userEmailProp');
+    return !!get(this, this.get('_userEmailProp'));
   }),
 
-  _intercomBootConfig: computed('_hasUserContext', function() {
+  clearUser() {
+    this.set('user', {});
+    if (window) {
+      window.intercomSettings = {};
+    }
+  },
+
+  _intercomBootConfig: computed('_hasUserContext', 'user', function() {
     let appId = get(this, 'config.appId');
     assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
 
@@ -46,26 +59,40 @@ export default Service.extend({
     };
 
     if (get(this, '_hasUserContext')) {
-      obj.name = get(this, '_userNameProp');
-      obj.email = get(this, '_userEmailProp');
+      obj.name = get(this, this.get('_userNameProp'));
+      obj.email = get(this, this.get('_userEmailProp'));
+      if (get(this, '_userIdProp') && get(this, this.get('_userIdProp'))) {
+        obj.user_id = get(this, this.get('_userIdProp'));
+      }
+      if (get(this, '_userHashProp') && get(this, this.get('_userHashProp'))) {
+        obj.user_hash = get(this, this.get('_userHashProp'));
+      }
       if (get(this, '_userCreatedAtProp')) {
-        obj.created_at = get(this, '_userCreatedAtProp');
+        obj.created_at = get(this, this.get('_userCreatedAtProp'));
       }
     }
     // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-
     return obj;
   }),
 
   start(bootConfig = {}) {
     let _bootConfig = merge(get(this, '_intercomBootConfig'), bootConfig);
-    scheduleOnce('afterRender', () => {
-      return this.get('api')('boot', _bootConfig);
-    });
+    console.log('_booting with ', _bootConfig);
+    if (window) {
+      window.intercomSettings = _bootConfig;
+    }
+    window.Intercom('boot', _bootConfig);
   },
 
   stop() {
-    scheduleOnce('afterRender', () => this.get('api')('shutdown'));
+    window.Intercom('shutdown');
+  },
+
+  reboot(forceReboot = false) {
+    if (window.Intercom.booted || forceReboot) {
+      this.stop();
+      this.start();
+    }
   },
 
   update(properties = {}) {

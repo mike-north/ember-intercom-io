@@ -7,6 +7,8 @@ module.exports = function(/* environment, appConfig */) {
       userProperties: {
         nameProp: 'name',
         emailProp: 'email',
+        idProp: 'id',
+        hashProp: 'hmacToken',
         createdAtProp: 'createdAt'
       }
     }

@@ -4,8 +4,7 @@ import test from 'dummy/tests/ember-sinon-qunit/test';
 import sinon from 'sinon';
 
 const {
-  run,
-  set
+  run
 } = Ember;
 
 const mockConfig = {
@@ -20,15 +19,18 @@ const mockConfig = {
 };
 
 let intercomStub = null;
-
+let oldIntercom = window.Intercom;
 moduleFor('service:intercom', 'Unit | Service | intercom', {
   beforeEach() {
     this.register('service:config', mockConfig, { instantiate: false });
 
     intercomStub = sinon.stub();
-
-    this.subject().set('api', intercomStub);
+    window.Intercom = intercomStub;
+    // this.subject().set('api', intercomStub);
     this.subject().set('config', mockConfig.intercom);
+  },
+  afterEach() {
+    window.Intercom = oldIntercom;
   }
 });
 
@@ -42,13 +44,13 @@ test('it adds the correct user context to the boot config', function(assert) {
 
   let service = this.subject();
 
-  set(service.user, 'email', actualUser.email);
-  set(service.user, 'name', actualUser.name);
-  set(service.user, 'createdAt', actualUser.createdAt);
+  service.set('user', actualUser);
 
-  run(() => service.start({
-    custom: actualUser.custom
-  }));
+  run(() => {
+    service.start({
+      custom: actualUser.custom
+    });
+  });
 
   // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
   let expectedBootConfig = {
