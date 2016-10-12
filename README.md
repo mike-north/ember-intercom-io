@@ -1,9 +1,9 @@
 # ember-intercom-io
 
-[![Build Status](https://travis-ci.org/levanto-financial/ember-intercom-io.svg?branch=master)](https://travis-ci.org/levanto-financial/ember-intercom-io)
-[![Code Climate](https://codeclimate.com/github/Levanto-Financial/ember-intercom-io/badges/gpa.svg)](https://codeclimate.com/github/Levanto-Financial/ember-intercom-io)
-[![Dependency Status](https://david-dm.org/levanto-financial/ember-intercom-io.svg)](https://david-dm.org/levanto-financial/ember-intercom-io)
-[![devDependency Status](https://david-dm.org/levanto-financial/ember-intercom-io/dev-status.svg)](https://david-dm.org/levanto-financial/ember-intercom-io#info=devDependencies)
+[![Build Status](https://travis-ci.org/mike-north/ember-intercom-io.svg?branch=master)](https://travis-ci.org/mike-north/ember-intercom-io)
+[![Code Climate](https://codeclimate.com/github/mike-north/ember-intercom-io/badges/gpa.svg)](https://codeclimate.com/github/mike-north/ember-intercom-io)
+[![Dependency Status](https://david-dm.org/mike-north/ember-intercom-io.svg)](https://david-dm.org/mike-north/ember-intercom-io)
+[![devDependency Status](https://david-dm.org/mike-north/ember-intercom-io/dev-status.svg)](https://david-dm.org/mike-north/ember-intercom-io#info=devDependencies)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-intercom-io.svg)](http://emberobserver.com/addons/ember-intercom-io)
 
 [Intercom.io](http://intercom.io) for Ember.js apps. 
