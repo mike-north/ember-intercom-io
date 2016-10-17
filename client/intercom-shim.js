@@ -3,6 +3,10 @@
   'use strict';
 
   function l(config) {
+    if (config.intercom.enabled === false) {
+      return;
+    }
+
     var d = w.document;
     var s = d.createElement('script');
     s.type = 'text/javascript';
