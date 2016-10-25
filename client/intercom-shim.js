@@ -38,7 +38,9 @@
 
   generateModule('intercom', {
     default: function() {
-      return window.Intercom.apply(null, arguments);
+      if (window.Intercom && typeof window.Intercom === 'function') {
+        return window.Intercom.apply(null, arguments);
+      }
     },
     _setup: l
   });
