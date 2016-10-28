@@ -27,6 +27,7 @@ module.exports = function(environment) {
   ...
   intercom: {
     appId: null, // <-- REPLACE WITH YOUR INTERCOM.IO app_id
+    enabled: true, // <-- Setting to false in your testing environment prevents unneccessary network requests (true by default)
   },
   ...
 };

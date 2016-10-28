@@ -3,6 +3,10 @@
   'use strict';
 
   function l(config) {
+    if (config.intercom.enabled === false) {
+      return;
+    }
+
     var i = function() {
       i.c(arguments);
     };
