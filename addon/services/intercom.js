@@ -59,9 +59,7 @@ export default Service.extend({
 
   start(bootConfig = {}) {
     let _bootConfig = merge(get(this, '_intercomBootConfig'), bootConfig);
-    scheduleOnce('afterRender', () => {
-      return this.get('api')('boot', _bootConfig);
-    });
+    scheduleOnce('afterRender', () => this.get('api')('boot', _bootConfig));
   },
 
   stop() {

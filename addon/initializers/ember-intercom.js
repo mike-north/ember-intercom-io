@@ -1,7 +1,4 @@
-import Ember from 'ember';
 import { _setup } from 'intercom';
-
-const { getWithDefault } = Ember;
 
 export function initialize(application) {
   if (typeof FastBoot === 'undefined') {
@@ -12,16 +9,8 @@ export function initialize(application) {
     } else {
       config = application.registry.resolve('config:environment');
     }
-    let deferUntilLoaded = getWithDefault(config, 'intercom.deferReadinessUntilLoaded', false);
-    if (deferUntilLoaded) {
-      application.deferReadiness();
-    }
-    let p = _setup(config);
-    if (deferUntilLoaded) {
-      p.then(() => {
-        application.advanceReadiness();
-      });
-    }
+
+    _setup(config);
   }
 }
 

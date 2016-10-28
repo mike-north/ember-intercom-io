@@ -1,9 +1,23 @@
 (function() {
-  /* globals define, Intercom */
+  /* globals define */
   'use strict';
 
   function l(config) {
-    var d = w.document;
+    if (config.intercom.enabled === false) {
+      return;
+    }
+
+    var i = function() {
+      i.c(arguments);
+    };
+    i.q = [];
+    i.c = function(args) {
+      i.q.push(args);
+    };
+
+    window.Intercom = i;
+
+    var d = document;
     var s = d.createElement('script');
     s.type = 'text/javascript';
     s.async = true;
@@ -12,32 +26,26 @@
     x.parentNode.insertBefore(s, x);
   }
 
+  var ic = window.Intercom;
+  if (typeof ic === 'function') {
+    ic('reattach_activator');
+    ic('update', {});
+  }
+
   function generateModule(name, values) {
     define(name, [], function() {
-      'use strict';
+      'use strict'; // jshint ignore:line
 
       return values;
     });
   }
 
-  var w = window;
-  var ic = w.Intercom;
-  if (typeof ic === 'function') {
-    ic('reattach_activator');
-    ic('update', intercomSettings);
-  } else {
-    var i = function() {
-      i.c(arguments);
-    };
-    i.q = [];
-    i.c = function(args) {
-      i.q.push(args);
-    };
-    w.Intercom = i;
-  }
-
   generateModule('intercom', {
-    default: w.Intercom,
+    default: function() {
+      if (window.Intercom && typeof window.Intercom.apply === 'function') {
+        return window.Intercom.apply(null, arguments);
+      }
+    },
     _setup: l
   });
 })();
