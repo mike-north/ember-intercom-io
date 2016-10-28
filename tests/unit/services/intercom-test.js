@@ -60,6 +60,6 @@ test('it adds the correct user context to the boot config', function(assert) {
   };
   // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
 
-  assert.ok(intercomStub.calledOnce, 'it called the intercom module');
+  assert.equal(!!intercomStub.calledOnce, true, 'it called the intercom module');
   sinon.assert.calledWith(intercomStub, 'boot', expectedBootConfig);
 });
