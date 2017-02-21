@@ -99,20 +99,22 @@ test('normalizing meta data', function(assert) {
   };
   /* eslint-enable camelcase */
 
+  assert.deepEqual(intercomStub.firstCall.args, ['boot', expectedBootConfig], 'it called the intercom module with boot');
   assert.equal(intercomStub.calledWith('onHide'), true, 'it called the intercom module with onHide');
   assert.equal(intercomStub.calledWith('onShow'), true, 'it called the intercom module with onShow');
   assert.equal(intercomStub.calledWith('onUnreadCountChange'), true, 'it called the intercom module with onUnreadCountChange');
-  assert.deepEqual(intercomStub.lastCall.args, ['boot', expectedBootConfig], 'it called the intercom module with boot');
 });
 
 test('autoUpdate', function(assert) {
   let service = this.subject();
+
   let expectedConfig = {
     name: 'Bobby Tables',
     email: 'user@example.com'
   };
 
   run(() => {
+    service.boot();
     service.setProperties({
       user: {
         name: 'Bobby Tables',
