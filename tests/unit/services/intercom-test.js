@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { moduleFor } from 'ember-qunit';
-import test from 'dummy/tests/ember-sinon-qunit/test';
+import test from 'ember-sinon-qunit/test-support/test';
 import sinon from 'sinon';
 
 const {
@@ -15,7 +15,7 @@ const mockConfig = {
       emailProp: 'email',
       createdAtProp: 'createdAt'
     },
-    appId: '1'
+    appId: '12345abc'
   }
 };
 
@@ -26,6 +26,14 @@ moduleFor('service:intercom', 'Unit | Service | intercom', {
     this.register('service:config', mockConfig, { instantiate: false });
 
     intercomStub = sinon.stub();
+    intercomStub.withArgs('onHide');
+    intercomStub.withArgs('onShow');
+    intercomStub.withArgs('onUnreadCountChange');
+    intercomStub.withArgs('boot');
+    intercomStub.withArgs('shutdown');
+    intercomStub.withArgs('show');
+    intercomStub.withArgs('hide');
+    intercomStub.withArgs('trackEvent');
 
     this.subject().set('api', intercomStub);
     this.subject().set('config', mockConfig.intercom);
@@ -33,10 +41,12 @@ moduleFor('service:intercom', 'Unit | Service | intercom', {
 });
 
 test('it adds the correct user context to the boot config', function(assert) {
+  let now = new Date();
   let actualUser = {
     name: 'foo',
+    userId: '1',
     email: 'foo@foo.com',
-    createdAt: new Date(),
+    createdAt: now,
     custom: 'my-custom-property'
   };
 
@@ -44,22 +54,72 @@ test('it adds the correct user context to the boot config', function(assert) {
 
   set(service.user, 'email', actualUser.email);
   set(service.user, 'name', actualUser.name);
+  set(service.user, 'userId', actualUser.userId);
   set(service.user, 'createdAt', actualUser.createdAt);
 
   run(() => service.start({
     custom: actualUser.custom
   }));
 
-  // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+  /* eslint-disable camelcase */
   let expectedBootConfig = {
     app_id: mockConfig.intercom.appId,
     name: actualUser.name,
+    user_id: actualUser.userId,
     email: actualUser.email,
-    created_at: actualUser.createdAt,
+    created_at: actualUser.createdAt.valueOf(),
     custom: actualUser.custom
   };
-  // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+  /* eslint-enable camelcase */
 
-  assert.equal(!!intercomStub.calledOnce, true, 'it called the intercom module');
+  assert.equal(intercomStub.calledWith('boot'), true, 'it called the intercom module');
   sinon.assert.calledWith(intercomStub, 'boot', expectedBootConfig);
+});
+
+test('normalizing meta data', function(assert) {
+  let now = new Date();
+
+  let service = this.subject();
+  service.set('user.createdAt', now);
+  service.set('user.userId', '1');
+  service.set('user.email', 'user@example.com');
+  service.set('user.name', 'Bobby Tables');
+  service.set('user.fullName', 'Bobby Tables');
+
+  run(() => service.start());
+
+  /* eslint-disable camelcase */
+  let expectedBootConfig = {
+    app_id: mockConfig.intercom.appId,
+    name: 'Bobby Tables',
+    full_name: 'Bobby Tables',
+    email: 'user@example.com',
+    created_at: now.valueOf(),
+    user_id: '1'
+  };
+  /* eslint-enable camelcase */
+
+  assert.equal(intercomStub.calledWith('onHide'), true, 'it called the intercom module with onHide');
+  assert.equal(intercomStub.calledWith('onShow'), true, 'it called the intercom module with onShow');
+  assert.equal(intercomStub.calledWith('onUnreadCountChange'), true, 'it called the intercom module with onUnreadCountChange');
+  assert.deepEqual(intercomStub.lastCall.args, ['boot', expectedBootConfig], 'it called the intercom module with boot');
+});
+
+test('autoUpdate', function(assert) {
+  let service = this.subject();
+  let expectedConfig = {
+    name: 'Bobby Tables',
+    email: 'user@example.com'
+  };
+
+  run(() => {
+    service.setProperties({
+      user: {
+        name: 'Bobby Tables',
+        email: 'user@example.com'
+      }
+    });
+  });
+
+  assert.deepEqual(intercomStub.lastCall.args, ['update', expectedConfig], 'it called the intercom module with update');
 });

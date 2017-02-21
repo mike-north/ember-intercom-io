@@ -3,7 +3,7 @@ import intercom from 'intercom';
 
 const {
   get,
-  merge,
+  isPresent,
   Service,
   computed,
   observer,
@@ -18,15 +18,33 @@ const {
 
 const { keys } = Object;
 
+/**
+ * Normalization function for converting intercom data to a consistent format.
+ *
+ * Changes:
+ * - underscore keys
+ * - convert dates to unix timestamps
+ *
+ * @param  {Object} data
+ *
+ * @private
+ * @return {Object}
+ */
 function normalizeIntercomMetadata(data) {
   let result = {};
+  let val;
   keys(data).forEach((key) => {
-    if (typeOf(data[key]) === 'object') {
-      result[underscore(key)] = normalizeIntercomMetadata(data[key])
-    }else{
-      result[underscore(key)] = data[key]
+    val = data[key];
+    if (typeOf(val) === 'object') {
+      result[underscore(key)] = normalizeIntercomMetadata(val);
+    } else {
+      if (typeOf(val) === 'date') {
+        val = val.valueOf();
+      }
+      result[underscore(key)] = val;
     }
-  })
+  });
+
   return result;
 }
 
@@ -42,6 +60,15 @@ export default Service.extend(Evented, {
   isOpen: false,
 
   /**
+   * Indicates whether the Intercom boot command has been called.
+   *
+   * @public
+   * @readonly
+   * @type {Boolean}
+   */
+  isBooted: false,
+
+  /**
    * Reports the number of unread messages
    *
    * @public
@@ -53,13 +80,28 @@ export default Service.extend(Evented, {
    * If true, will automatically update intercom when changes to user object are made.
    *
    * @type {Boolean}
+   * @public
    */
   autoUpdate: true,
 
+  /**
+   * Hide the default Intercom launcher button
+   *
+   * @public
+   * @type {Boolean}
+   */
+  hideDefaultLauncher: false,
+
+  /**
+   * The user data to send to Intercom.
+   *
+   * @public
+   * @type {Object}
+   */
   user: {
     email: null,
     name: null,
-    createdAt: null,
+    createdAt: null
   },
 
   boot(config = {}) {
@@ -136,8 +178,8 @@ export default Service.extend(Evented, {
   },
 
   start(bootConfig = {}) {
-    let config = merge(get(this, '_intercomBootConfig'), bootConfig);
-    return this.boot(config);
+    let config = get(this, '_intercomBootConfig');
+    return this.boot({ ...config, ...bootConfig });
   },
 
   stop() {
@@ -184,53 +226,41 @@ export default Service.extend(Evented, {
   _callIntercomMethod(methodName, ...args) {
     scheduleOnce('afterRender', () => {
       let intercom = this.get('api');
-      debugger
-      intercom[methodName].apply(intercom, args);
+      intercom(methodName, ...args);
     });
   },
 
   userDataDidChange: observer('user.@each', function() {
     if (this.get('autoUpdate')) {
-      this.update(this.get('user'));
+      let user = this.get('user');
+      let config = { ...user };
+      this.update(config);
     }
   }),
 
-  _userNameProp: computed('config.userProperties.nameProp', function() {
-    return get(this, `user.${get(this, 'config.userProperties.nameProp')}`);
+  _hasUserContext: computed('user', function() {
+    let user = get(this, 'user');
+    return isPresent(user.email) || isPresent(user.userId);
   }),
 
-  _userEmailProp: computed('config.userProperties.emailProp', function() {
-    return get(this, `user.${get(this, 'config.userProperties.emailProp')}`);
-  }),
-
-  _userCreatedAtProp: computed('config.userProperties.createdAtProp', function() {
-    return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
-  }),
-
-  _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-    return !!get(this, 'user') &&
-           !!get(this, '_userNameProp') &&
-           !!get(this, '_userEmailProp');
-  }),
-
-  _intercomBootConfig: computed('_hasUserContext', function() {
+  _intercomBootConfig: computed(function() {
     let appId = get(this, 'config.appId');
+    let user = get(this, 'user');
+    let _hasUserContext = get(this, '_hasUserContext');
+    let hideDefaultLauncher = get(this, 'hideDefaultLauncher');
+
     assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
 
-    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-    let obj = {
-      app_id: appId
-    };
+    let obj = { appId };
 
-    if (get(this, '_hasUserContext')) {
-      obj.name = get(this, '_userNameProp');
-      obj.email = get(this, '_userEmailProp');
-      if (get(this, '_userCreatedAtProp')) {
-        obj.created_at = get(this, '_userCreatedAtProp');
-      }
+    if (hideDefaultLauncher) {
+      obj.hideDefaultLauncher = true;
     }
-    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+
+    if (_hasUserContext) {
+      obj = { ...obj, ...user };
+    }
 
     return obj;
-  }),
+  })
 });
