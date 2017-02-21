@@ -23,9 +23,9 @@ module.exports = function(environment) {
     }
   };
 
-  ENV['intercom'] = {
+  ENV.intercom = {
     appId: '1234ab'
-  }
+  };
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;

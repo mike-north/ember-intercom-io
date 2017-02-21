@@ -1,5 +1,7 @@
+/* globals define */
+/* eslint-env browser */
+
 (function() {
-  /* globals define */
   'use strict';
 
   function l(config) {
