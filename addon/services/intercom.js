@@ -8,6 +8,7 @@ const {
   computed,
   observer,
   assert,
+  Logger,
   run,
   run: { scheduleOnce },
   Evented,
@@ -110,7 +111,12 @@ export default Service.extend(Evented, {
   },
 
   update(config = {}) {
-    this._callIntercomMethod('update', normalizeIntercomMetadata(config));
+    let _hasUserContext = this.get('_hasUserContext');
+    if (_hasUserContext) {
+      this._callIntercomMethod('update', normalizeIntercomMetadata(config));
+    } else {
+      Logger.warn('Refusing to send update to Intercom because user context is incomplete. Missing userId or email');
+    }
   },
 
   shutdown() {
