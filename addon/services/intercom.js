@@ -7,10 +7,11 @@ const {
   Service,
   computed,
   assert,
-  run: { scheduleOnce }
+  run: { scheduleOnce },
+  Evented
 } = Ember;
 
-export default Service.extend({
+export default Service.extend(Evented, {
   api: intercom,
 
   _userNameProp: computed('config.userProperties.nameProp', function() {
