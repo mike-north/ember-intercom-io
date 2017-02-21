@@ -9,7 +9,6 @@ export function initialize(application) {
     } else {
       config = application.registry.resolve('config:environment');
     }
-
     _setup(config);
   }
 }

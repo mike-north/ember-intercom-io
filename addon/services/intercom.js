@@ -108,9 +108,15 @@ export default Service.extend(Evented, {
   boot(config = {}) {
     this._addEventHandlers();
     this._callIntercomMethod('boot', normalizeIntercomMetadata(config));
+    this.set('isBooted', true);
   },
 
   update(config = {}) {
+    if (!this.get('isBooted')) {
+      Logger.warn('Cannot call update before boot');
+      return;
+    }
+
     let _hasUserContext = this.get('_hasUserContext');
     if (_hasUserContext) {
       this._callIntercomMethod('update', normalizeIntercomMetadata(config));
@@ -237,7 +243,7 @@ export default Service.extend(Evented, {
   },
 
   userDataDidChange: observer('user.@each', function() {
-    if (this.get('autoUpdate')) {
+    if (this.get('autoUpdate') && this.get('isBooted')) {
       let user = this.get('user');
       let config = { ...user };
       this.update(config);
