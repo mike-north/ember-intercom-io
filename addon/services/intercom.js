@@ -7,8 +7,8 @@ const {
   Service,
   computed,
   assert,
-  run: { scheduleOnce }
-  Evented,
+  run: { scheduleOnce },
+  Evented
 } = Ember;
 
 export default Service.extend(Evented, {
@@ -76,20 +76,5 @@ export default Service.extend(Evented, {
 
   update(properties = {}) {
     scheduleOnce('afterRender', () => this.get('api')('update', properties));
-  },
-
-  boot() {},
-  shutdown() {},
-  show() {},
-
-  hide() {},
-  showMessages() {},
-  showNewMessage() {},
-  trackEvent(eventName, data = {}) {
-
-  },
-
-  getVisitorId() {
-    return this.get('api')('getVisitorId')
   }
 });
