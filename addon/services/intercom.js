@@ -126,6 +126,7 @@ export default Service.extend(Evented, {
   },
 
   shutdown() {
+    this.set('isBooted', false);
     this._callIntercomMethod('shutdown');
   },
 
