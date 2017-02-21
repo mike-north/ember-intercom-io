@@ -1,0 +1,8 @@
+{{#if hasBlock}}
+  {{yield unreadCount isOpen}}
+{{else}}
+  {{label}}
+  {{#if hasUnread}}
+    ({{unreadCount}})
+  {{/if}}
+{{/if}}
