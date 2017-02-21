@@ -8,10 +8,18 @@ const {
   computed,
   assert,
   run: { scheduleOnce }
+  Evented,
 } = Ember;
 
-export default Service.extend({
+export default Service.extend(Evented, {
   api: intercom,
+
+  init() {
+    this._super();
+    this.api('onHide', this.trigger('hide'))
+    this.api('onShow', this.trigger('show'))
+    this.api('onUnreadCountChange', this.trigger('unreadCountChange'))
+  },
 
   _userNameProp: computed('config.userProperties.nameProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.nameProp')}`);
@@ -68,5 +76,20 @@ export default Service.extend({
 
   update(properties = {}) {
     scheduleOnce('afterRender', () => this.get('api')('update', properties));
+  },
+
+  boot() {},
+  shutdown() {},
+  show() {},
+
+  hide() {},
+  showMessages() {},
+  showNewMessage() {},
+  trackEvent(eventName, data = {}) {
+
+  },
+
+  getVisitorId() {
+    return this.get('api')('getVisitorId')
   }
 });
