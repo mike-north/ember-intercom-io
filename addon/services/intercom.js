@@ -106,8 +106,8 @@ export default Service.extend(Evented, {
   },
 
   boot(config = {}) {
-    this._addEventHandlers();
     this._callIntercomMethod('boot', normalizeIntercomMetadata(config));
+    this._addEventHandlers();
     this.set('isBooted', true);
   },
 
@@ -210,7 +210,7 @@ export default Service.extend(Evented, {
   },
 
   _onUnreadCountChange(count) {
-    this.set('unreadCount', parseInt(count, 10));
+    this.set('unreadCount', Number(count));
   },
 
   _addEventHandlers() {
