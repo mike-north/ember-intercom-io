@@ -14,13 +14,6 @@ const {
 export default Service.extend(Evented, {
   api: intercom,
 
-  init() {
-    this._super();
-    this.api('onHide', this.trigger('hide'))
-    this.api('onShow', this.trigger('show'))
-    this.api('onUnreadCountChange', this.trigger('unreadCountChange'))
-  },
-
   _userNameProp: computed('config.userProperties.nameProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.nameProp')}`);
   }),
