@@ -23,6 +23,10 @@ module.exports = function(environment) {
     }
   };
 
+  ENV['intercom'] = {
+    appId: '1234ab'
+  }
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
