@@ -6,7 +6,7 @@
 [![devDependency Status](https://david-dm.org/mike-north/ember-intercom-io/dev-status.svg)](https://david-dm.org/mike-north/ember-intercom-io#info=devDependencies)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-intercom-io.svg)](http://emberobserver.com/addons/ember-intercom-io)
 
-[Intercom.io](http://intercom.io) for Ember.js apps. 
+[Intercom.io](http://intercom.io) for Ember.js apps.
 
 This README outlines the details of collaborating on this Ember addon.
 
@@ -14,7 +14,7 @@ This README outlines the details of collaborating on this Ember addon.
 
 **Install this addon with ember-cli** `ember install ember-intercom-io`
 
-**Add the `{{intercom-io}}` component to one of your templates`**
+**Add the `{{intercom-io}}` component to one of your templates**
 The chat widget will appear whenever this component has been rendered, and should disappear whenever it's destroyed.
 
 ### Configuration
@@ -58,6 +58,27 @@ export default Ember.Service.extend({
 });
 
 ```
+#### Updating User Properties
+
+To update properties on the user, based on preference changes, subscription updates, etc, call the `.update()` method.
+
+***app/components/some-thing.js***
+```js
+  ...
+  intercom: inject.service()
+  actions: {
+    save(data) {
+      this.get('store').save('user', data)
+        .then((updatedUser) => {
+          let properties = this.getProperties('email', 'name', 'subscriptionType');
+          this.get('intercom').update(properties)
+        });
+    }
+  }
+  ...
+```
+
+
 
 ## Installation
 
