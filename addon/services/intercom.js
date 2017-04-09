@@ -127,6 +127,7 @@ export default Service.extend(Evented, {
 
   shutdown() {
     this.set('isBooted', false);
+    this._hasEventHandlers = false;
     this._callIntercomMethod('shutdown');
   },
 
@@ -256,7 +257,7 @@ export default Service.extend(Evented, {
     return isPresent(user.email) || isPresent(user.userId);
   }),
 
-  _intercomBootConfig: computed(function() {
+  _intercomBootConfig: computed('config', 'user.@each', '_hasUserContext', 'hideDefaultLauncher', function() {
     let appId = get(this, 'config.appId');
     let user = get(this, 'user');
     let _hasUserContext = get(this, '_hasUserContext');
@@ -264,11 +265,7 @@ export default Service.extend(Evented, {
 
     assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
 
-    let obj = { appId };
-
-    if (hideDefaultLauncher) {
-      obj.hideDefaultLauncher = true;
-    }
+    let obj = { appId, hideDefaultLauncher: hideDefaultLauncher === true };
 
     if (_hasUserContext) {
       obj = { ...obj, ...user };
