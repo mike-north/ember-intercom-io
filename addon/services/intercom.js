@@ -105,12 +105,22 @@ export default Service.extend(Evented, {
     createdAt: null
   },
 
+  /**
+   * Boot interom window
+   * @param  {Object} [config={}] [description]
+   * @public
+   */
   boot(config = {}) {
     this._callIntercomMethod('boot', normalizeIntercomMetadata(config));
     this._addEventHandlers();
     this.set('isBooted', true);
   },
 
+  /**
+   * Update intercom data
+   * @param  {Object} [config={}] [description]
+   * @public
+   */
   update(config = {}) {
     if (!this.get('isBooted')) {
       Logger.warn('Cannot call update before boot');
@@ -125,16 +135,28 @@ export default Service.extend(Evented, {
     }
   },
 
+  /**
+   * shutdown Intercom window
+   * @public
+   */
   shutdown() {
     this.set('isBooted', false);
     this._hasEventHandlers = false;
     this._callIntercomMethod('shutdown');
   },
 
+  /**
+   * Show intercom window
+   * @public
+   */
   show() {
     return this._wrapIntercomCallInPromise('show', 'show');
   },
 
+/**
+ * hide intercom window
+ * @public
+ */
   hide() {
     return this._wrapIntercomCallInPromise('hide', 'hide');
   },
@@ -200,16 +222,30 @@ export default Service.extend(Evented, {
     return this.shutdown();
   },
 
+  /**
+   * Private on hide
+   * @private
+   * @return {[type]} [description]
+   */
   _onHide() {
     this.set('isOpen', false);
     this.trigger('hide');
   },
 
+  /**
+   * handle onShow events
+   * @private
+   */
   _onShow() {
     this.set('isOpen', true);
     this.trigger('show');
   },
 
+ /**
+ * Handle onUnreadCountChange Events
+ * @param  {[type]} count [description]
+ * @private
+ */
   _onUnreadCountChange(count) {
     this.set('unreadCount', Number(count));
   },

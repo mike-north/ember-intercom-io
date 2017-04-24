@@ -7,13 +7,16 @@ export default Mixin.create({
 
   /**
    * push page changes to intercom
-   * @public
+   * @private
+   * @on didTransition
    */
   submitRouteChange: on('didTransition', function() {
     let intercom = get(this, 'intercom');
 
     assert('Could not find property configured intercom instance', intercom);
 
-    intercom.update();
+    if (get(intercom, 'isBooted')) {
+      intercom.update();
+    }
   })
 });

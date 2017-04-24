@@ -18,3 +18,4 @@ testem.log
 *.sublime-workspace
 
 \.DS_Store
+.idea
