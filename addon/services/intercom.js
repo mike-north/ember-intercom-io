@@ -31,29 +31,27 @@ export default Service.extend({
   },
 
   _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-    return !!get(this, 'user') &&
-           !!get(this, '_userNameProp') &&
-           !!get(this, '_userEmailProp');
+    return !!get(this, 'user')
+           && !!get(this, '_userNameProp')
+           && !!get(this, '_userEmailProp');
   }),
 
   _intercomBootConfig: computed('_hasUserContext', function() {
     let appId = get(this, 'config.appId');
     assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
 
-    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
     let obj = {
-      app_id: appId
+      app_id: appId // eslint-disable-line
     };
 
     if (get(this, '_hasUserContext')) {
       obj.name = get(this, '_userNameProp');
       obj.email = get(this, '_userEmailProp');
       if (get(this, '_userCreatedAtProp')) {
+        // eslint-disable-next-line
         obj.created_at = get(this, '_userCreatedAtProp');
       }
     }
-    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-
     return obj;
   }),
 

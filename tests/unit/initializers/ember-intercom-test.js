@@ -12,7 +12,7 @@ let application;
 // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 const mockConfig = {
   intercom: {
-    app_id: '1'
+    app_id: '1' // eslint-disable-line
   }
 };
 // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
