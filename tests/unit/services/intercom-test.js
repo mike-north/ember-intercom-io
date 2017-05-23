@@ -52,10 +52,10 @@ test('it adds the correct user context to the boot config', function(assert) {
 
   // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
   let expectedBootConfig = {
-    app_id: mockConfig.intercom.appId,
+    app_id: mockConfig.intercom.appId, //eslint-disable-line
     name: actualUser.name,
     email: actualUser.email,
-    created_at: actualUser.createdAt,
+    created_at: actualUser.createdAt, //eslint-disable-line
     custom: actualUser.custom
   };
   // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
