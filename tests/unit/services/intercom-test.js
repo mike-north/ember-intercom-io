@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { moduleFor } from 'ember-qunit';
-import test from 'ember-sinon-qunit/test-support/test';
+import test from 'dummy/tests/ember-sinon-qunit/test';
 import sinon from 'sinon';
 
 const {
@@ -15,7 +15,7 @@ const mockConfig = {
       emailProp: 'email',
       createdAtProp: 'createdAt'
     },
-    appId: '12345abc'
+    appId: '1'
   }
 };
 
@@ -26,14 +26,6 @@ moduleFor('service:intercom', 'Unit | Service | intercom', {
     this.register('service:config', mockConfig, { instantiate: false });
 
     intercomStub = sinon.stub();
-    intercomStub.withArgs('onHide');
-    intercomStub.withArgs('onShow');
-    intercomStub.withArgs('onUnreadCountChange');
-    intercomStub.withArgs('boot');
-    intercomStub.withArgs('shutdown');
-    intercomStub.withArgs('show');
-    intercomStub.withArgs('hide');
-    intercomStub.withArgs('trackEvent');
 
     this.subject().set('api', intercomStub);
     this.subject().set('config', mockConfig.intercom);
@@ -63,11 +55,12 @@ test('it adds the correct user context to the boot config', function(assert) {
 
   /* eslint-disable camelcase */
   let expectedBootConfig = {
-    app_id: mockConfig.intercom.appId,
+    app_id: mockConfig.intercom.appId, //eslint-disable-line
     name: actualUser.name,
     user_id: actualUser.userId,
     email: actualUser.email,
     created_at: actualUser.createdAt.valueOf(),
+    created_at: actualUser.createdAt, //eslint-disable-line
     custom: actualUser.custom
   };
   /* eslint-enable camelcase */

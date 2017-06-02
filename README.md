@@ -1,5 +1,7 @@
 # ember-intercom-io
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mike-north/ember-intercom-io.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/mike-north/ember-intercom-io.svg?branch=master)](https://travis-ci.org/mike-north/ember-intercom-io)
 [![Code Climate](https://codeclimate.com/github/mike-north/ember-intercom-io/badges/gpa.svg)](https://codeclimate.com/github/mike-north/ember-intercom-io)
 [![Dependency Status](https://david-dm.org/mike-north/ember-intercom-io.svg)](https://david-dm.org/mike-north/ember-intercom-io)

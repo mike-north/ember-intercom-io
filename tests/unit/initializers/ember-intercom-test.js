@@ -12,7 +12,7 @@ let application;
 /* eslint-disable camelcase */
 const mockConfig = {
   intercom: {
-    app_id: '1'
+    app_id: '1' // eslint-disable-line
   }
 };
 /* eslint-enable camelcase */

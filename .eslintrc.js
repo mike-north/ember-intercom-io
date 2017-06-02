@@ -1,11 +1,8 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 6,
-    sourceType: 'module',
-    ecmaFeatures: {
-      experimentalObjectRestSpread: true
-    },
+    ecmaVersion: 2017,
+    sourceType: 'module'
   },
   extends: [
     'eslint:recommended',
