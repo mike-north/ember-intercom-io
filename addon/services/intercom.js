@@ -21,13 +21,18 @@ export default Service.extend({
     return get(this, `user.${get(this, 'config.userProperties.emailProp')}`);
   }),
 
+  _userHashProp: computed('config.userProperties.hashProp', function() {
+    return get(this, `user.${get(this, 'config.userProperties.hashProp')}`);
+  }),
+
   _userCreatedAtProp: computed('config.userProperties.createdAtProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
   }),
 
   user: {
     name: null,
-    email: null
+    email: null,
+    hash: null
   },
 
   _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
@@ -47,6 +52,10 @@ export default Service.extend({
     if (get(this, '_hasUserContext')) {
       obj.name = get(this, '_userNameProp');
       obj.email = get(this, '_userEmailProp');
+      if (get(this, '_userHashProp')) {
+        // eslint-disable-next-line
+        obj.user_hash = get(this, '_userHashProp');
+      }
       if (get(this, '_userCreatedAtProp')) {
         // eslint-disable-next-line
         obj.created_at = get(this, '_userCreatedAtProp');
