@@ -9,13 +9,13 @@ const {
 
 let application;
 
-// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+/* eslint-disable camelcase */
 const mockConfig = {
   intercom: {
     app_id: '1' // eslint-disable-line
   }
 };
-// jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+/* eslint-enable camelcase */
 
 module('Unit | Initializer | ember intercom', {
   beforeEach() {

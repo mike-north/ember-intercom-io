@@ -1,0 +1,5 @@
+{{#if hasBlock}}
+  {{yield unreadCount isOpen}}
+{{else}}
+  {{label}} {{#if hasUnread}}<span class="Badge Badge-unread-count">{{unreadCount}}</span>{{/if}}
+{{/if}}

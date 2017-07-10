@@ -8,7 +8,7 @@
 [![devDependency Status](https://david-dm.org/mike-north/ember-intercom-io/dev-status.svg)](https://david-dm.org/mike-north/ember-intercom-io#info=devDependencies)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-intercom-io.svg)](http://emberobserver.com/addons/ember-intercom-io)
 
-[Intercom.io](http://intercom.io) for Ember.js apps. 
+[Intercom.io](http://intercom.io) for Ember.js apps.
 
 This README outlines the details of collaborating on this Ember addon.
 
@@ -36,36 +36,103 @@ module.exports = function(environment) {
 
 ```
 
+**Configure Route Mixin**
 
-#### Users vs Leads
+Add the `IntercomRoute` Mixin to your router.
 
-In the intercom.io world, a lead is a visitor to your site or app, without an email or name associated with them. A user has a name and email, and is a good construct for tracking the history of all interactions w/ a single person.
-
-You can make `ember-intercom-io` aware of a "user" context (shifting into "users" mode instead of "leads" mode) by adding an object to the `intercom` service (i.e., your user authentication service).
-
-**app/services/authentication.js**
 ```js
+// app/router.js
 import Ember from 'ember';
+import IntercomRoute from 'ember-intercom-io/mixins/intercom-route';
 
-const { inject } = Ember;
-
-export default Ember.Service.extend({
-  intercom: inject.service(), // the intercom service
-  didLogin(user) {
-    ...
-    this.get('intercom').set('user.name', 'Joe Username');
-    this.get('intercom').set('user.email', 'joe@example.com');
-    this.get('intercom').set('user.createdAt', 1447135065173);
-  }
+const Router = Ember.Router.extend(IntercomRoute, {
+  ...
 });
 
+Router.map(function() {
+  ...
+};
+
+export default Router;
+
 ```
+
+**Identity Verification**
+
+If you're looking to enable identify verification, follow the [documentation located here](https://docs.intercom.com/configure-intercom-for-your-product-or-site/staying-secure/enable-identity-verification-on-your-web-product)
+and simply add the `user_hash` to the intercom service's `user` property. 
+
+## API
+
+The `intercom` service exposes several public API methods that match Intercom.com's
+existing Javascript API. For full details on the client API, [read the Intercom docs.](https://developers.intercom.com/v2.0/docs/intercom-javascript#section-intercomonhide)
+
+### Properties
+
+|    Name      |      Type         |
+| autoUpdate   | Boolean           |
+| hideDefaultLauncher | Boolean    |
+| isOpen       | Boolean           |
+| isBooted     | Boolean           |
+| unreadCount  | Integer           |
+| user         | Object            |
+
+### Methods
+
+The following intercom methods are implemented. See `services/intercom.js` for full
+details.
+
+`boot()`
+
+`update()`
+
+`shutdown()`
+
+`hide()`
+
+`show()`
+
+`showMessages()`
+
+`showNewMessage()`
+
+`trackEvent()`
+
+`getVisitorId()` Returns the current id of the logged in user.
+
+### Events
+
+Subscribe to events in your app with event listeners:
+
+```js
+//fancy-component.js
+
+...
+
+intercom: Ember.inject.service(),
+newMessageAlert: Ember.on('intercom.unreadCountChange', function() {
+    alert('Unread Count Changed!');
+}),
+
+...
+
+```
+
+**Available Events**
+
+(Read the Intercom documentation for full details)[https://developers.intercom.com/v2.0/docs/intercom-javascript#section-intercomonhide]
+
+| Ember Event | Intercom Event |
+| hide        | `onHide`       |
+| show        | `onShow`       |
+| unreadCountChange | `onUnreadCountChange` |
+
+
 
 ## Installation
 
 * `git clone` this repository
 * `npm install`
-* `bower install`
 
 ## Running
 

@@ -5,9 +5,9 @@ import config from './config/environment';
 
 let App;
 
-const { Application } = Ember;
-
 Ember.MODEL_FACTORY_INJECTIONS = true;
+
+const { Application } = Ember;
 
 App = Application.extend({
   modulePrefix: config.modulePrefix,
