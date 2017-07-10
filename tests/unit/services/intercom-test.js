@@ -60,7 +60,6 @@ test('it adds the correct user context to the boot config', function(assert) {
     user_id: actualUser.userId,
     email: actualUser.email,
     created_at: actualUser.createdAt.valueOf(),
-    created_at: actualUser.createdAt, //eslint-disable-line
     custom: actualUser.custom
   };
   /* eslint-enable camelcase */
@@ -117,4 +116,23 @@ test('autoUpdate', function(assert) {
   });
 
   assert.deepEqual(intercomStub.lastCall.args, ['update', expectedConfig], 'it called the intercom module with update');
+});
+
+test('Track events in intercom', function(assert) {
+  let service = this.subject();
+  /* eslint-disable camelcase */
+  let eventName = 'invited-friend';
+  let metadata = {
+    friend_name: 'bobby tables',
+    friend_email: 'bobby@tables.com'
+  };
+  /* eslint-enable camelcase */
+
+  run(() => {
+    service.boot();
+    service.trackEvent(eventName, metadata);
+  });
+
+  assert.equal(intercomStub.calledWith('trackEvent'), true, 'Intercom track event method called');
+  sinon.assert.calledWith(intercomStub, 'trackEvent', eventName, metadata);
 });

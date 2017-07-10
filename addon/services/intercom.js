@@ -10,6 +10,7 @@ const {
   assert,
   Logger,
   run,
+  merge,
   run: { scheduleOnce },
   Evented,
   RSVP: { Promise },
@@ -153,10 +154,10 @@ export default Service.extend(Evented, {
     return this._wrapIntercomCallInPromise('show', 'show');
   },
 
-/**
- * hide intercom window
- * @public
- */
+  /**
+  * hide intercom window
+  * @public
+  */
   hide() {
     return this._wrapIntercomCallInPromise('hide', 'hide');
   },
@@ -215,7 +216,9 @@ export default Service.extend(Evented, {
 
   start(bootConfig = {}) {
     let config = get(this, '_intercomBootConfig');
-    return this.boot({ ...config, ...bootConfig });
+    // ALso replaced rest/spread due to babel
+    merge(bootConfig, config);
+    return this.boot(bootConfig);
   },
 
   stop() {
@@ -241,11 +244,11 @@ export default Service.extend(Evented, {
     this.trigger('show');
   },
 
- /**
- * Handle onUnreadCountChange Events
- * @param  {[type]} count [description]
- * @private
- */
+  /**
+  * Handle onUnreadCountChange Events
+  * @param  {[type]} count [description]
+  * @private
+  */
   _onUnreadCountChange(count) {
     this.set('unreadCount', Number(count));
   },
@@ -283,7 +286,10 @@ export default Service.extend(Evented, {
   userDataDidChange: observer('user.@each', function() {
     if (this.get('autoUpdate') && this.get('isBooted')) {
       let user = this.get('user');
-      let config = { ...user };
+      // Replaced rest/spread to due babel
+      // let config = { ...user };
+      let config = {};
+      merge(config, user);
       this.update(config);
     }
   }),
@@ -301,10 +307,14 @@ export default Service.extend(Evented, {
 
     assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
 
-    let obj = { appId, hideDefaultLauncher: hideDefaultLauncher === true };
+    let obj = { appId };
+    if (hideDefaultLauncher) {
+      obj.hideDefaultLauncher = true;
+    }
 
     if (_hasUserContext) {
-      obj = { ...obj, ...user };
+      // obj = { ...obj, ...user };
+      merge(obj, user);
     }
 
     return obj;
