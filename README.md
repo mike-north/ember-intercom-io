@@ -41,7 +41,6 @@ module.exports = function(environment) {
 Add the `IntercomRoute` Mixin to your router.
 
 ```js
-
 // app/router.js
 import Ember from 'ember';
 import IntercomRoute from 'ember-intercom-io/mixins/intercom-route';
@@ -57,6 +56,11 @@ Router.map(function() {
 export default Router;
 
 ```
+
+**Identity Verification**
+
+If you're looking to enable identify verification, follow the [documentation located here](https://docs.intercom.com/configure-intercom-for-your-product-or-site/staying-secure/enable-identity-verification-on-your-web-product)
+and simply add the `user_hash` to the intercom service's `user` property. 
 
 ## API
 
@@ -123,11 +127,12 @@ newMessageAlert: Ember.on('intercom.unreadCountChange', function() {
 | show        | `onShow`       |
 | unreadCountChange | `onUnreadCountChange` |
 
+
+
 ## Installation
 
 * `git clone` this repository
 * `npm install`
-* `bower install`
 
 ## Running
 
