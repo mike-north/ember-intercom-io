@@ -1,14 +1,9 @@
-import Ember from 'ember';
+import { merge } from '@ember/polyfills';
+import Service from '@ember/service';
+import { computed, get } from '@ember/object';
+import { assert } from '@ember/debug';
+import { scheduleOnce } from '@ember/runloop';
 import intercom from 'intercom';
-
-const {
-  get,
-  merge,
-  Service,
-  computed,
-  assert,
-  run: { scheduleOnce }
-} = Ember;
 
 export default Service.extend({
   api: intercom,
@@ -25,15 +20,14 @@ export default Service.extend({
     return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
   }),
 
+  // eslint-disable-next-line
   user: {
     name: null,
     email: null
   },
 
   _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-    return !!get(this, 'user')
-           && !!get(this, '_userNameProp')
-           && !!get(this, '_userEmailProp');
+    return !!get(this, 'user') && !!get(this, '_userNameProp') && !!get(this, '_userEmailProp');
   }),
 
   _intercomBootConfig: computed('_hasUserContext', function() {

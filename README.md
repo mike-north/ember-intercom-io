@@ -83,4 +83,4 @@ export default Ember.Service.extend({
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 
-Copyright (c) 2015 Levanto Financial
+Copyright (c) 2015 Levanto Financial, 2016-18 [Mike Works](https://mike.works), Inc.
