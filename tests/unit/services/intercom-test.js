@@ -1,12 +1,8 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+import { set } from '@ember/object';
 import { moduleFor } from 'ember-qunit';
 import test from 'dummy/tests/ember-sinon-qunit/test';
 import sinon from 'sinon';
-
-const {
-  run,
-  set
-} = Ember;
 
 const mockConfig = {
   intercom: {
@@ -46,9 +42,11 @@ test('it adds the correct user context to the boot config', function(assert) {
   set(service.user, 'name', actualUser.name);
   set(service.user, 'createdAt', actualUser.createdAt);
 
-  run(() => service.start({
-    custom: actualUser.custom
-  }));
+  run(() =>
+    service.start({
+      custom: actualUser.custom
+    })
+  );
 
   // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
   let expectedBootConfig = {

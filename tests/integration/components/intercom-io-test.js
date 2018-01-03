@@ -1,13 +1,6 @@
-import Ember from 'ember';
-import {
-  moduleForComponent,
-  test
-} from 'ember-qunit';
+import { run } from '@ember/runloop';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
-const {
-  run
-} = Ember;
 
 let intercomCommandArgs = {};
 
@@ -44,9 +37,13 @@ test('it renders', function(assert) {
   let oldStartCount = (intercomCommandArgs.boot || []).length;
   this.render(hbs`{{intercom-io}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    ''
+  );
   run.next(() => {
     assert.equal(intercomCommandArgs.boot.length - oldStartCount, 1, 'Intercom service "start" was invoked');
   });
-
 });

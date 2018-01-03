@@ -1,11 +1,7 @@
-import Ember from 'ember';
+import Application from '@ember/application';
+import { run } from '@ember/runloop';
 import EmberIntercomInitializer from 'dummy/initializers/ember-intercom';
 import { module, test } from 'qunit';
-
-const {
-  Application,
-  run
-} = Ember;
 
 let application;
 
