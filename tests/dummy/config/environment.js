@@ -64,6 +64,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    // prod flags
   }
 
   return ENV;
