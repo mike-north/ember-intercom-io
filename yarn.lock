@@ -1987,9 +1987,9 @@ ember-cli-eslint@~4.2.3:
     rsvp "^4.6.1"
     walk-sync "^0.3.0"
 
-ember-cli-fastboot@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-fastboot/-/ember-cli-fastboot-1.1.1.tgz#e12a6ee6c9c0ffecdbf903e8f1c65eb555c09b1a"
+ember-cli-fastboot@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-fastboot/-/ember-cli-fastboot-1.1.2.tgz#5b79cc2744b7c97f1f5166aab826e20ba55332ba"
   dependencies:
     broccoli-concat "^3.2.2"
     broccoli-funnel "^2.0.0"
@@ -1998,7 +1998,8 @@ ember-cli-fastboot@1.1.1:
     chalk "^2.0.1"
     ember-cli-babel "^6.7.2"
     ember-cli-lodash-subset "2.0.1"
-    ember-cli-version-checker "^2.0.0"
+    ember-cli-preprocess-registry "^3.1.0"
+    ember-cli-version-checker "^2.1.0"
     fastboot "^1.1.0"
     fastboot-express-middleware "^1.1.0"
     fastboot-transform "^0.1.2"
