@@ -1,12 +1,21 @@
 import { merge } from '@ember/polyfills';
 import Service from '@ember/service';
-import { computed, get } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 import { assert } from '@ember/debug';
 import { scheduleOnce } from '@ember/runloop';
 import intercom from 'intercom';
 
 export default Service.extend({
+  init() {
+    this._super(...arguments);
+    set(this, "user", { email: null, name: null, user_id: null });
+  },
+
   api: intercom,
+
+  _userIdProp: computed('config.userProperties.userIdProp', function() {
+    return get(this, `user.${get(this, 'config.userProperties.userIdProp')}`);
+  }),
 
   _userNameProp: computed('config.userProperties.nameProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.nameProp')}`);
@@ -20,14 +29,11 @@ export default Service.extend({
     return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
   }),
 
-  // eslint-disable-next-line
-  user: {
-    name: null,
-    email: null
-  },
+  user: null,
 
   _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-    return !!get(this, 'user') && !!get(this, '_userNameProp') && !!get(this, '_userEmailProp');
+    return !!get(this, 'user') && !!get(this, '_userNameProp') &&
+      (!!get(this, '_userEmailProp') || !!get(this, "_userIdProp"));
   }),
 
   _intercomBootConfig: computed('_hasUserContext', function() {
@@ -39,6 +45,7 @@ export default Service.extend({
     };
 
     if (get(this, '_hasUserContext')) {
+      obj.user_id = get(this, '_userIdProp');
       obj.name = get(this, '_userNameProp');
       obj.email = get(this, '_userEmailProp');
       if (get(this, '_userCreatedAtProp')) {

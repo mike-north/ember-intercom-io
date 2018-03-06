@@ -1,7 +1,7 @@
 import { run } from '@ember/runloop';
 import { set } from '@ember/object';
 import { moduleFor } from 'ember-qunit';
-import test from 'dummy/tests/ember-sinon-qunit/test';
+import test from 'ember-sinon-qunit/test-support/test';
 import sinon from 'sinon';
 
 const mockConfig = {
@@ -9,6 +9,7 @@ const mockConfig = {
     userProperties: {
       nameProp: 'name',
       emailProp: 'email',
+      userIdProp: 'id',
       createdAtProp: 'createdAt'
     },
     appId: '1'
@@ -30,6 +31,7 @@ moduleFor('service:intercom', 'Unit | Service | intercom', {
 
 test('it adds the correct user context to the boot config', function(assert) {
   let actualUser = {
+    id: 'fooUserId',
     name: 'foo',
     email: 'foo@foo.com',
     createdAt: new Date(),
@@ -38,6 +40,7 @@ test('it adds the correct user context to the boot config', function(assert) {
 
   let service = this.subject();
 
+  set(service.user, 'id', actualUser.id);
   set(service.user, 'email', actualUser.email);
   set(service.user, 'name', actualUser.name);
   set(service.user, 'createdAt', actualUser.createdAt);
@@ -53,6 +56,7 @@ test('it adds the correct user context to the boot config', function(assert) {
     app_id: mockConfig.intercom.appId, //eslint-disable-line
     name: actualUser.name,
     email: actualUser.email,
+    user_id: actualUser.id,
     created_at: actualUser.createdAt, //eslint-disable-line
     custom: actualUser.custom
   };
