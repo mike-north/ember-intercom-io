@@ -1,7 +1,7 @@
 import { run } from '@ember/runloop';
 import { set } from '@ember/object';
 import { moduleFor } from 'ember-qunit';
-import test from 'dummy/tests/ember-sinon-qunit/test';
+import test from 'ember-sinon-qunit/test-support/test';
 import sinon from 'sinon';
 
 const mockConfig = {
