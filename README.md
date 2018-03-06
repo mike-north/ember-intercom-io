@@ -10,6 +10,8 @@
 
 [Intercom.io](http://intercom.io) for Ember.js apps. 
 
+This README outlines the details of collaborating on this Ember addon.
+
 ## Setup
 
 **Install this addon with ember-cli** `ember install ember-intercom-io`
@@ -65,21 +67,19 @@ export default Ember.Service.extend({
 * `npm install`
 * `bower install`
 
-### Linting
+## Running
 
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+* `ember server`
+* Visit your app at http://localhost:4200.
 
-### Running tests
+## Running Tests
 
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
+* `ember test`
+* `ember test --server`
 
-### Running the dummy application
+## Building
 
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+* `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 

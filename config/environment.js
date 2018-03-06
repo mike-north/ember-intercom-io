@@ -5,11 +5,9 @@ module.exports = function(/* environment, appConfig */) {
     intercom: {
       appId: null,
       userProperties: {
-        createdAtProp: 'createdAt',
-        emailProp: 'email',
         nameProp: 'name',
-        userHashProp: 'hash',
-        userIdProp: 'id'
+        emailProp: 'email',
+        createdAtProp: 'createdAt'
       }
     }
   };
