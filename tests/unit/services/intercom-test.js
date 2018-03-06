@@ -9,6 +9,7 @@ const mockConfig = {
     userProperties: {
       nameProp: 'name',
       emailProp: 'email',
+      userHashProp: 'hash',
       userIdProp: 'id',
       createdAtProp: 'createdAt'
     },
@@ -34,6 +35,7 @@ test('it adds the correct user context to the boot config', function(assert) {
     id: 'fooUserId',
     name: 'foo',
     email: 'foo@foo.com',
+    hash: 'fakeIntercomSecureUserHash',
     createdAt: new Date(),
     custom: 'my-custom-property'
   };
@@ -43,6 +45,7 @@ test('it adds the correct user context to the boot config', function(assert) {
   set(service.user, 'id', actualUser.id);
   set(service.user, 'email', actualUser.email);
   set(service.user, 'name', actualUser.name);
+  set(service.user, 'hash', actualUser.hash);
   set(service.user, 'createdAt', actualUser.createdAt);
 
   run(() =>
@@ -56,6 +59,7 @@ test('it adds the correct user context to the boot config', function(assert) {
     app_id: mockConfig.intercom.appId, //eslint-disable-line
     name: actualUser.name,
     email: actualUser.email,
+    user_hash: actualUser.hash,
     user_id: actualUser.id,
     created_at: actualUser.createdAt, //eslint-disable-line
     custom: actualUser.custom

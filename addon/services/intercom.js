@@ -8,10 +8,14 @@ import intercom from 'intercom';
 export default Service.extend({
   init() {
     this._super(...arguments);
-    set(this, "user", { email: null, name: null, user_id: null });
+    set(this, "user", { email: null, name: null, hash: null, user_id: null });
   },
 
   api: intercom,
+
+  _userHashProp: computed('config.userProperties.userHashProp', function() {
+    return get(this, `user.${get(this, 'config.userProperties.userHashProp')}`);
+  }),
 
   _userIdProp: computed('config.userProperties.userIdProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.userIdProp')}`);
@@ -45,6 +49,7 @@ export default Service.extend({
     };
 
     if (get(this, '_hasUserContext')) {
+      obj.user_hash = get(this, '_userHashProp');
       obj.user_id = get(this, '_userIdProp');
       obj.name = get(this, '_userNameProp');
       obj.email = get(this, '_userEmailProp');

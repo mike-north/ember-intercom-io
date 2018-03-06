@@ -16,6 +16,7 @@ const mockConfig = {
     userProperties: {
       nameProp: 'name',
       emailProp: 'email',
+      userHashProp: 'hash',
       userIdProp: 'id',
       createdAtProp: 'createdAt'
     },

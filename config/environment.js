@@ -8,6 +8,7 @@ module.exports = function(/* environment, appConfig */) {
         createdAtProp: 'createdAt',
         emailProp: 'email',
         nameProp: 'name',
+        userHashProp: 'hash',
         userIdProp: 'id'
       }
     }
