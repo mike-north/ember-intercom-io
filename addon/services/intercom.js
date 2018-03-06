@@ -1,11 +1,16 @@
 import { merge } from '@ember/polyfills';
 import Service from '@ember/service';
-import { computed, get } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 import { assert } from '@ember/debug';
 import { scheduleOnce } from '@ember/runloop';
 import intercom from 'intercom';
 
 export default Service.extend({
+  init() {
+    this._super(...arguments);
+    set(this, "user", { name: null, email: null });
+  },
+
   api: intercom,
 
   _userNameProp: computed('config.userProperties.nameProp', function() {
@@ -20,11 +25,7 @@ export default Service.extend({
     return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
   }),
 
-  // eslint-disable-next-line
-  user: {
-    name: null,
-    email: null
-  },
+  user: null,
 
   _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
     return !!get(this, 'user') && !!get(this, '_userNameProp') && !!get(this, '_userEmailProp');
