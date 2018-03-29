@@ -6,6 +6,7 @@ import intercom from 'intercom';
 import { run } from '@ember/runloop';
 import { typeOf } from "@ember/utils";
 import { underscore } from "@ember/string"	;
+import Evented from '@ember/object/evented';
 
 
 /**
@@ -38,7 +39,7 @@ function normalizeIntercomMetadata(data) {
   return result;
 }
 
-export default Service.extend({
+export default Service.extend(Evented, {
   init() {
     this._super(...arguments);
     set(this, 'user', { email: null, name: null, hash: null, user_id: null });
