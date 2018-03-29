@@ -1,5 +1,5 @@
 import { run } from '@ember/runloop';
-import { set } from '@ember/object';
+import { setProperties } from '@ember/object';
 import { moduleFor } from 'ember-qunit';
 import test from 'ember-sinon-qunit/test-support/test';
 import sinon from 'sinon';
@@ -31,27 +31,25 @@ moduleFor('service:intercom', 'Unit | Service | intercom', {
 });
 
 test('it adds the correct user context to the boot config', function(assert) {
+  let now = new Date();
   let actualUser = {
     id: 'fooUserId',
     name: 'foo',
     email: 'foo@foo.com',
     hash: 'fakeIntercomSecureUserHash',
-    createdAt: new Date(),
-    custom: 'my-custom-property'
+    createdAt: now,
+    custom: 'my-custom-property',
+    shouldBeUnderScored: 'myThing',
+    company: {
+      id: 'companyId',
+      nestedUnderscore: 'custom-nested'
+    }
   };
 
   let service = this.subject();
-
-  set(service.user, 'id', actualUser.id);
-  set(service.user, 'email', actualUser.email);
-  set(service.user, 'name', actualUser.name);
-  set(service.user, 'hash', actualUser.hash);
-  set(service.user, 'createdAt', actualUser.createdAt);
-
+  setProperties(service.user, actualUser);
   run(() =>
-    service.start({
-      custom: actualUser.custom
-    })
+    service.start()
   );
 
   // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
@@ -61,11 +59,59 @@ test('it adds the correct user context to the boot config', function(assert) {
     email: actualUser.email,
     user_hash: actualUser.hash,
     user_id: actualUser.id,
-    created_at: actualUser.createdAt, //eslint-disable-line
-    custom: actualUser.custom
+    created_at: actualUser.createdAt.valueOf(), //eslint-disable-line
+    custom: actualUser.custom,
+    should_be_under_scored: actualUser.shouldBeUnderScored,
+    company: {
+      id: 'companyId',
+      nested_underscore: actualUser.company.nestedUnderscore
+    }
   };
   // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-
-  assert.equal(!!intercomStub.calledOnce, true, 'it called the intercom module');
+  assert.deepEqual(intercomStub.firstCall.args, ['boot', expectedBootConfig], 'it called the intercom module with boot');
   sinon.assert.calledWith(intercomStub, 'boot', expectedBootConfig);
+  assert.equal(intercomStub.calledWith('onHide'), true, 'it called the intercom module with onHide');
+  assert.equal(intercomStub.calledWith('onShow'), true, 'it called the intercom module with onShow');
+  assert.equal(intercomStub.calledWith('onUnreadCountChange'), true, 'it called the intercom module with onUnreadCountChange');
+});
+
+test('update gets called when user properties change', function(assert) {
+ let service = this.subject();
+
+ let expectedConfig = {
+   name: 'Bobby Tables',
+   email: 'user@example.com',
+   app_id: mockConfig.intercom.appId, //eslint-disable-line
+ };
+
+ run(() => {
+   service.boot();
+   service.setProperties({
+     user: {
+       name: 'Bobby Tables',
+       email: 'user@example.com'
+     }
+   });
+ });
+
+ assert.deepEqual(intercomStub.lastCall.args, ['update', expectedConfig], 'it called the intercom module with update');
+});
+
+test('Track events in intercom', function(assert) {
+ let service = this.subject();
+ /* eslint-disable camelcase */
+ let eventName = 'invited-friend';
+ let metadata = {
+   friend_name: 'bobby tables',
+   friend_email: 'bobby@tables.com'
+ };
+ /* eslint-enable camelcase */
+
+ run(() => {
+   service.boot();
+   service.trackEvent(eventName, metadata);
+ });
+
+ assert.equal(intercomStub.calledWith('trackEvent'), true, 'Intercom track event method called');
+ sinon.assert.calledWith(intercomStub, 'trackEvent', eventName, metadata);
 });
