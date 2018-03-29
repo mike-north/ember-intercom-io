@@ -7,6 +7,7 @@ import { run } from '@ember/runloop';
 import { typeOf } from "@ember/utils";
 import { underscore } from "@ember/string"	;
 import Evented from '@ember/object/evented';
+import { alias } from '@ember/object/computed';
 
 
 /**
@@ -114,18 +115,21 @@ export default Service.extend(Evented, {
   hideDefaultLauncher: false,
 
   /**
-   * @pri
+   * @private
+   * alias for appId
+   * @type {[type]}
+   */
+  appId: alias('config.appId'),
+
+  /**
+   * Alias for computed user data with app-provided config values
+   * @private
    * @type {[type]}
    */
   _computedUser: computed('user.@each', '_userHashProp', '_userIdProp',
     '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-      let appId = get(this, 'config.appId');
-      assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
-
-      let obj = {
-        app_id: appId // eslint-disable-line
-      };
-
+      assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', this.get('appId'));
+      let obj = {}
       if (get(this, '_hasUserContext')) {
 
         let userProps = Object.values(get(this, 'config.userProperties')),
@@ -158,12 +162,6 @@ export default Service.extend(Evented, {
       return obj;
   }),
 
-
-/**
- *
- * @type {Object}
- */
-
   /**
    * Boot interom window
    * @param  {Object} [config={}] [description]
@@ -182,7 +180,7 @@ export default Service.extend(Evented, {
    */
   update(config = {}) {
     if (!this.get('isBooted')) {
-      warn('Cannot call update before boot');
+        ('Cannot call update before boot');
       return;
     }
 
@@ -343,7 +341,8 @@ export default Service.extend(Evented, {
   userDataDidChange: observer('user.@each', function() {
     if (this.get('autoUpdate') && this.get('isBooted')) {
       let user = this.get('_computedUser');
-      let config = { ...user };
+      let appId = this.get('appId')
+      let config = {appId, ...user };
       this.update(config);
     }
   }),
