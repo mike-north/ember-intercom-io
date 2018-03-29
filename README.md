@@ -8,7 +8,7 @@
 [![devDependency Status](https://david-dm.org/mike-north/ember-intercom-io/dev-status.svg)](https://david-dm.org/mike-north/ember-intercom-io#info=devDependencies)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-intercom-io.svg)](http://emberobserver.com/addons/ember-intercom-io)
 
-[Intercom.io](http://intercom.io) for Ember.js apps. 
+[Intercom.io](http://intercom.io) for Ember.js apps.
 
 ## Setup
 
@@ -58,6 +58,74 @@ export default Ember.Service.extend({
 });
 
 ```
+
+## API
+
+The `intercom` service exposes several public API methods that match Intercom.com's
+existing Javascript API. For full details on the client API, [read the Intercom docs.](https://developers.intercom.com/v2.0/docs/intercom-javascript#section-intercomonhide)
+
+### Properties
+
+|    Name      |      Type         |
+------------------------------------
+| autoUpdate   | Boolean           |
+| hideDefaultLauncher | Boolean    |
+| isOpen       | Boolean           |
+| isBooted     | Boolean           |
+| unreadCount  | Integer           |
+| user         | Object            |
+
+### Methods
+
+The following intercom methods are implemented. See `services/intercom.js` for full
+details.
+
+`boot()`
+
+`update()`
+
+`shutdown()`
+
+`hide()`
+
+`show()`
+
+`showMessages()`
+
+`showNewMessage()`
+
+`trackEvent()`
+
+`getVisitorId()` Returns the current id of the logged in user.
+
+### Events
+
+Subscribe to events in your app with event listeners:
+
+```js
+//fancy-component.js
+
+...
+
+intercom: Ember.inject.service(),
+newMessageAlert: Ember.on('intercom.unreadCountChange', function() {
+    alert('Unread Count Changed!');
+}),
+
+...
+
+```
+
+**Available Events**
+
+(Read the Intercom documentation for full details)[https://developers.intercom.com/v2.0/docs/intercom-javascript#section-intercomonhide]
+
+| Ember Event | Intercom Event |
+--------------------------------
+| hide        | `onHide`       |
+| show        | `onShow`       |
+| unreadCountChange | `onUnreadCountChange` |
+
 
 ## Installation
 

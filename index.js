@@ -5,7 +5,11 @@ var path = require('path');
 
 module.exports = {
   name: 'ember-intercom-io',
-
+  options: {
+    babel: {
+      plugins: ['transform-object-rest-spread']
+    }
+  },
   included: function(app) {
     this._super.included(app);
     app.import('vendor/intercom-shim.js');
