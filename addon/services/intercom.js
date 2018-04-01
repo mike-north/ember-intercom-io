@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { computed, get, set, observer } from '@ember/object';
+import { computed, get, observer, set } from '@ember/object';
 import { assert, warn } from '@ember/debug';
 import { scheduleOnce } from '@ember/runloop';
 import intercom from 'intercom';
@@ -43,7 +43,7 @@ function normalizeIntercomMetadata(data) {
 export default Service.extend(Evented, {
   init() {
     this._super(...arguments);
-    //set(this, 'user', {email: null, name: null, hash: null, user_id: null});
+    set(this, 'user', {email: null, name: null, hash: null, user_id: null});
   },
 
   api: intercom,
@@ -57,7 +57,6 @@ export default Service.extend(Evented, {
   }),
 
   _userIdProp: computed('config.userProperties.userIdProp', function() {
-    console.log(get(this, `user.${get(this, 'config.userProperties.userIdProp')}`));
     return get(this, `user.${get(this, 'config.userProperties.userIdProp')}`);
   }),
 
@@ -72,8 +71,6 @@ export default Service.extend(Evented, {
   _userCreatedAtProp: computed('config.userProperties.createdAtProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
   }),
-
-  user: null,
 
   /**
   * Indicates the open state of the Intercom panel
@@ -151,8 +148,6 @@ export default Service.extend(Evented, {
     if (_hasUserContext) {
       this._callIntercomMethod('update', normalizeIntercomMetadata(config));
     } else {
-      console.log('problem in update');
-      debugger;
       warn('Refusing to send update to Intercom because user context is incomplete. Missing userId or email');
     }
   },
@@ -322,7 +317,8 @@ export default Service.extend(Evented, {
       assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', this.get('appId'));
 
       let obj = {}
-      if (this.get('user')) {
+      if (this.get('user') ||
+          (get(this, '_userIdProp') || get(this, '_userEmailProp') ) ) {
         obj.user_hash = get(this, '_userHashProp');
         obj.user_id = get(this, '_userIdProp');
         obj.name = get(this, '_userNameProp');
@@ -338,10 +334,11 @@ export default Service.extend(Evented, {
         let userKeys = Object.keys(user);
 
         userKeys.forEach(k => {
-          if (!userProps.includes(k)) {
+          if (!userProps.includes(k) && !obj.hasOwnProperty(k)) {
             obj[k] = user[k];
           }
         });
+
 
         for (let prop in obj) {
           if (typeOf(obj[prop]) === 'undefined') {
