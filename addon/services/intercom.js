@@ -43,10 +43,11 @@ function normalizeIntercomMetadata(data) {
 export default Service.extend(Evented, {
   init() {
     this._super(...arguments);
-    set(this, 'user', { email: null, name: null, hash: null, user_id: null });
+    //set(this, 'user', {email: null, name: null, hash: null, user_id: null});
   },
 
   api: intercom,
+  user: null,
   /**
    * [description]
    * @return {[type]} [description]
@@ -56,6 +57,7 @@ export default Service.extend(Evented, {
   }),
 
   _userIdProp: computed('config.userProperties.userIdProp', function() {
+    console.log(get(this, `user.${get(this, 'config.userProperties.userIdProp')}`));
     return get(this, `user.${get(this, 'config.userProperties.userIdProp')}`);
   }),
 
@@ -121,46 +123,7 @@ export default Service.extend(Evented, {
    */
   appId: alias('config.appId'),
 
-  /**
-   * Alias for computed user data with app-provided config values
-   * @private
-   * @type {[type]}
-   */
-  _computedUser: computed('user.@each', '_userHashProp', '_userIdProp',
-    '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-      assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', this.get('appId'));
-      let obj = {}
-      if (get(this, '_hasUserContext')) {
 
-        let userProps = Object.values(get(this, 'config.userProperties')),
-            user = get(this, 'user');
-
-        let userKeys = Object.keys(user);
-
-        userKeys.forEach(k => {
-          if (!userProps.includes(k)) {
-            obj[k] = user[k];
-          }
-        });
-
-        obj.user_hash = get(this, '_userHashProp');
-        obj.user_id = get(this, '_userIdProp');
-        obj.name = get(this, '_userNameProp');
-        obj.email = get(this, '_userEmailProp');
-        if (get(this, '_userCreatedAtProp')) {
-          // eslint-disable-next-line
-          obj.created_at = get(this, '_userCreatedAtProp');
-        }
-
-      }
-
-      for (let prop in obj) {
-        if (typeOf(obj[prop]) === 'undefined') {
-          delete obj[prop];
-        }
-      }
-      return obj;
-  }),
 
   /**
    * Boot interom window
@@ -180,7 +143,7 @@ export default Service.extend(Evented, {
    */
   update(config = {}) {
     if (!this.get('isBooted')) {
-        ('Cannot call update before boot');
+        warn('Cannot call update before boot');
       return;
     }
 
@@ -188,6 +151,8 @@ export default Service.extend(Evented, {
     if (_hasUserContext) {
       this._callIntercomMethod('update', normalizeIntercomMetadata(config));
     } else {
+      console.log('problem in update');
+      debugger;
       warn('Refusing to send update to Intercom because user context is incomplete. Missing userId or email');
     }
   },
@@ -347,7 +312,48 @@ export default Service.extend(Evented, {
     }
   }),
 
-  _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
+  /**
+   * Alias for computed user data with app-provided config values
+   * @private
+   * @type {[type]}
+   */
+  _computedUser: computed('user.@each', 'user', '_userHashProp', '_userIdProp',
+    '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function () {
+      assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', this.get('appId'));
+
+      let obj = {}
+      if (this.get('user')) {
+        obj.user_hash = get(this, '_userHashProp');
+        obj.user_id = get(this, '_userIdProp');
+        obj.name = get(this, '_userNameProp');
+        obj.email = get(this, '_userEmailProp');
+        if (get(this, '_userCreatedAtProp')) {
+          // eslint-disable-next-line
+          obj.created_at = get(this, '_userCreatedAtProp');
+        }
+
+        let userProps = Object.values(get(this, 'config.userProperties')),
+          user = get(this, 'user');
+
+        let userKeys = Object.keys(user);
+
+        userKeys.forEach(k => {
+          if (!userProps.includes(k)) {
+            obj[k] = user[k];
+          }
+        });
+
+        for (let prop in obj) {
+          if (typeOf(obj[prop]) === 'undefined') {
+            delete obj[prop];
+          }
+        }
+      }
+
+      return obj;
+    }),
+
+  _hasUserContext: computed('user.@each', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
     return !!get(this, 'user') && !!get(this, '_userNameProp') &&
       (!!get(this, '_userEmailProp') || !!get(this, "_userIdProp"));
   }),
