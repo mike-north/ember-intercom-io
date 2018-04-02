@@ -33,7 +33,9 @@ function normalizeIntercomMetadata(data) {
       if (typeOf(val) === 'date') {
         val = val.valueOf();
       }
-      result[underscore(key)] = val;
+      if (typeOf(val) !== 'undefined') {
+        result[underscore(key)] = val;
+      }
     }
   });
 
@@ -52,23 +54,23 @@ export default Service.extend(Evented, {
    * [description]
    * @return {[type]} [description]
    */
-  _userHashProp: computed('config.userProperties.userHashProp', function() {
+  _userHashProp: computed('user', 'user.@each', 'config.userProperties.userHashProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.userHashProp')}`);
   }),
 
-  _userIdProp: computed('config.userProperties.userIdProp', function() {
+  _userIdProp: computed('user', 'user.@each', 'config.userProperties.userIdProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.userIdProp')}`);
   }),
 
-  _userNameProp: computed('config.userProperties.nameProp', function() {
+  _userNameProp: computed('user', 'user.@each', 'config.userProperties.nameProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.nameProp')}`);
   }),
 
-  _userEmailProp: computed('config.userProperties.emailProp', function() {
+  _userEmailProp: computed('user', 'user.@each', 'config.userProperties.emailProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.emailProp')}`);
   }),
 
-  _userCreatedAtProp: computed('config.userProperties.createdAtProp', function() {
+  _userCreatedAtProp: computed('user', 'user.@each', 'config.userProperties.createdAtProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
   }),
 
@@ -317,8 +319,17 @@ export default Service.extend(Evented, {
       assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', this.get('appId'));
 
       let obj = {}
-      if (this.get('user') ||
-          (get(this, '_userIdProp') || get(this, '_userEmailProp') ) ) {
+      if (this.get('user')) {
+        let userProps = Object.values(get(this, 'config.userProperties')),
+          user = get(this, 'user'),
+          userKeys = Object.keys(user);
+
+        userKeys.forEach(k => {
+          if (!userProps.includes(k) && !obj.hasOwnProperty(k)) {
+            obj[k] = user[k];
+          }
+        });
+
         obj.user_hash = get(this, '_userHashProp');
         obj.user_id = get(this, '_userIdProp');
         obj.name = get(this, '_userNameProp');
@@ -327,32 +338,13 @@ export default Service.extend(Evented, {
           // eslint-disable-next-line
           obj.created_at = get(this, '_userCreatedAtProp');
         }
-
-        let userProps = Object.values(get(this, 'config.userProperties')),
-          user = get(this, 'user');
-
-        let userKeys = Object.keys(user);
-
-        userKeys.forEach(k => {
-          if (!userProps.includes(k) && !obj.hasOwnProperty(k)) {
-            obj[k] = user[k];
-          }
-        });
-
-
-        for (let prop in obj) {
-          if (typeOf(obj[prop]) === 'undefined') {
-            delete obj[prop];
-          }
-        }
       }
-
       return obj;
     }),
 
-  _hasUserContext: computed('user.@each', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
+  _hasUserContext: computed('user', 'user.@each', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
     return !!get(this, 'user') && !!get(this, '_userNameProp') &&
-      (!!get(this, '_userEmailProp') || !!get(this, "_userIdProp"));
+      (!!get(this, '_userEmailProp') || !!get(this, '_userIdProp'));
   }),
 
   _intercomBootConfig: computed('config','user.@each', '_hasUserContext', 'hideDefaultLauncher', function() {
