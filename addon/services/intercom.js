@@ -54,23 +54,23 @@ export default Service.extend(Evented, {
    * [description]
    * @return {[type]} [description]
    */
-  _userHashProp: computed('user', 'user.@each', 'config.userProperties.userHashProp', function() {
+  _userHashProp: computed('user', 'config.userProperties.userHashProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.userHashProp')}`);
   }),
 
-  _userIdProp: computed('user', 'user.@each', 'config.userProperties.userIdProp', function() {
+  _userIdProp: computed('user', 'config.userProperties.userIdProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.userIdProp')}`);
   }),
 
-  _userNameProp: computed('user', 'user.@each', 'config.userProperties.nameProp', function() {
+  _userNameProp: computed('user', 'config.userProperties.nameProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.nameProp')}`);
   }),
 
-  _userEmailProp: computed('user', 'user.@each', 'config.userProperties.emailProp', function() {
+  _userEmailProp: computed('user', 'config.userProperties.emailProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.emailProp')}`);
   }),
 
-  _userCreatedAtProp: computed('user', 'user.@each', 'config.userProperties.createdAtProp', function() {
+  _userCreatedAtProp: computed('user', 'config.userProperties.createdAtProp', function() {
     return get(this, `user.${get(this, 'config.userProperties.createdAtProp')}`);
   }),
 
