@@ -125,7 +125,7 @@ export default Service.extend(Evented, {
 
 
   /**
-   * Boot interom window
+   * Boot intercom window
    * @param  {Object} [config={}] [description]
    * @public
    */
