@@ -43,7 +43,7 @@
     "ember-try": "^0.2.23",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
-    "greenkeeper-lockfile": "^1.2.1",
+    "greenkeeper-lockfile": "^1.15.0",
     "loader.js": "^4.0.10"
   },
   "keywords": [
