@@ -52,7 +52,7 @@
     "chat"
   ],
   "dependencies": {
-    "ember-cli-babel": "^6.6.0",
+    "ember-cli-babel": "^6.13.0",
     "ember-cli-htmlbars": "^2.0.1"
   },
   "ember-addon": {
