@@ -9,6 +9,9 @@ import { underscore } from "@ember/string"	;
 import Evented from '@ember/object/evented';
 import { alias } from '@ember/object/computed';
 
+const WarnOption = {
+  id: 'ember-intercom-io.missing-data'
+}
 
 /**
  * Normalization function for converting intercom data to a consistent format.
@@ -142,7 +145,7 @@ export default Service.extend(Evented, {
    */
   update(config = {}) {
     if (!this.get('isBooted')) {
-        warn('Cannot call update before boot');
+        warn('Cannot call update before boot', WarnOption);
       return;
     }
 
@@ -150,7 +153,7 @@ export default Service.extend(Evented, {
     if (_hasUserContext) {
       this._callIntercomMethod('update', normalizeIntercomMetadata(config));
     } else {
-      warn('Refusing to send update to Intercom because user context is incomplete. Missing userId or email');
+      warn('Refusing to send update to Intercom because user context is incomplete. Missing userId or email', WarnOption);
     }
   },
 
