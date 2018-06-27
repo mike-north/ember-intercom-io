@@ -24,9 +24,9 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@types/ember@^2.8.4":
-  version "2.8.15"
-  resolved "https://registry.yarnpkg.com/@types/ember/-/ember-2.8.15.tgz#1d0931c2906d026a2b5c034cf5f2177e226be071"
+"@types/ember@^2.8.28":
+  version "2.8.28"
+  resolved "https://registry.yarnpkg.com/@types/ember/-/ember-2.8.28.tgz#6cd9ffc7d33ff12bcd187bcbdee6bf8c8cda1c8d"
   dependencies:
     "@types/handlebars" "*"
     "@types/jquery" "*"
