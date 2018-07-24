@@ -24,6 +24,16 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
+"@sinonjs/formatio@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sinonjs/formatio/-/formatio-2.0.0.tgz#84db7e9eb5531df18a8c5e0bfb6e449e55e654b2"
+  dependencies:
+    samsam "1.3.0"
+
+"@sinonjs/samsam@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-2.0.0.tgz#9163742ac35c12d3602dece74317643b35db6a80"
+
 "@types/ember@^2.8.4":
   version "2.8.15"
   resolved "https://registry.yarnpkg.com/@types/ember/-/ember-2.8.15.tgz#1d0931c2906d026a2b5c034cf5f2177e226be071"
@@ -1286,6 +1296,13 @@ broccoli-merge-trees@^2.0.0:
     broccoli-plugin "^1.3.0"
     merge-trees "^1.0.1"
 
+broccoli-merge-trees@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/broccoli-merge-trees/-/broccoli-merge-trees-3.0.0.tgz#90e4959f9e3c57cf1f04fab35152f3d849468d8b"
+  dependencies:
+    broccoli-plugin "^1.3.0"
+    merge-trees "^2.0.0"
+
 broccoli-middleware@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/broccoli-middleware/-/broccoli-middleware-1.0.0.tgz#92f4e1fb9a791ea986245a7077f35cc648dab097"
@@ -1613,6 +1630,10 @@ clean-css@^3.4.5:
   dependencies:
     commander "2.8.x"
     source-map "0.4.x"
+
+clean-up-path@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/clean-up-path/-/clean-up-path-1.0.0.tgz#de9e8196519912e749c9eaf67c13d64fac72a3e5"
 
 cli-cursor@^1.0.1:
   version "1.0.2"
@@ -2057,6 +2078,10 @@ diff@^3.1.0, diff@^3.2.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.4.0.tgz#b1d85507daf3964828de54b37d0d73ba67dda56c"
 
+diff@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
+
 doctrine@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.0.2.tgz#68f96ce8efc56cc42651f1faadb4f175273b0075"
@@ -2462,7 +2487,16 @@ ember-sinon-qunit@2.1.0:
     ember-cli-babel "^6.7.2"
     ember-sinon "~1.0.0"
 
-ember-sinon@1.0.1, ember-sinon@~1.0.0:
+ember-sinon@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ember-sinon/-/ember-sinon-2.2.0.tgz#acb628dec695d6817bd17fd6c25a4d70821851e9"
+  dependencies:
+    broccoli-funnel "^2.0.0"
+    broccoli-merge-trees "^3.0.0"
+    ember-cli-babel "^6.6.0"
+    sinon "^6.0.1"
+
+ember-sinon@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ember-sinon/-/ember-sinon-1.0.1.tgz#056390eacc9367b4c3955ce1cb5a04246f8197f5"
   dependencies:
@@ -3224,6 +3258,16 @@ fs-tree-diff@^0.5.2, fs-tree-diff@^0.5.3, fs-tree-diff@^0.5.4, fs-tree-diff@^0.5
     path-posix "^1.0.0"
     symlink-or-copy "^1.1.8"
 
+fs-updater@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/fs-updater/-/fs-updater-1.0.4.tgz#2329980f99ae9176e9a0e84f7637538a182ce63b"
+  dependencies:
+    can-symlink "^1.0.0"
+    clean-up-path "^1.0.0"
+    heimdalljs "^0.2.5"
+    heimdalljs-logger "^0.1.9"
+    rimraf "^2.6.2"
+
 fs-vacuum@~1.2.7:
   version "1.2.10"
   resolved "https://registry.yarnpkg.com/fs-vacuum/-/fs-vacuum-1.2.10.tgz#b7629bec07a4031a2548fdf99f5ecf1cc8b31e36"
@@ -3651,7 +3695,7 @@ heimdalljs-logger@^0.1.7, heimdalljs-logger@^0.1.9:
     debug "^2.2.0"
     heimdalljs "^0.2.0"
 
-heimdalljs@^0.2.0, heimdalljs@^0.2.1, heimdalljs@^0.2.3:
+heimdalljs@^0.2.0, heimdalljs@^0.2.1, heimdalljs@^0.2.3, heimdalljs@^0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/heimdalljs/-/heimdalljs-0.2.5.tgz#6aa54308eee793b642cff9cf94781445f37730ac"
   dependencies:
@@ -4243,7 +4287,7 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-just-extend@^1.1.26:
+just-extend@^1.1.26, just-extend@^1.1.27:
   version "1.1.27"
   resolved "https://registry.yarnpkg.com/just-extend/-/just-extend-1.1.27.tgz#ec6e79410ff914e472652abfa0e603c03d60e905"
 
@@ -4829,6 +4873,10 @@ lolex@^2.1.2:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/lolex/-/lolex-2.3.1.tgz#3d2319894471ea0950ef64692ead2a5318cff362"
 
+lolex@^2.3.2, lolex@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/lolex/-/lolex-2.7.1.tgz#e40a8c4d1f14b536aa03e42a537c7adbaf0c20be"
+
 longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
@@ -4974,6 +5022,13 @@ merge-trees@^1.0.1:
     heimdalljs-logger "^0.1.7"
     rimraf "^2.4.3"
     symlink-or-copy "^1.0.0"
+
+merge-trees@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/merge-trees/-/merge-trees-2.0.0.tgz#a560d796e566c5d9b2c40472a2967cca48d85161"
+  dependencies:
+    fs-updater "^1.0.4"
+    heimdalljs "^0.2.5"
 
 merge@^1.1.3, merge@^1.2.0:
   version "1.2.0"
@@ -5207,6 +5262,16 @@ nise@^1.0.1:
     formatio "^1.2.0"
     just-extend "^1.1.26"
     lolex "^1.6.0"
+    path-to-regexp "^1.7.0"
+    text-encoding "^0.6.4"
+
+nise@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/nise/-/nise-1.4.2.tgz#a9a3800e3994994af9e452333d549d60f72b8e8c"
+  dependencies:
+    "@sinonjs/formatio" "^2.0.0"
+    just-extend "^1.1.27"
+    lolex "^2.3.2"
     path-to-regexp "^1.7.0"
     text-encoding "^0.6.4"
 
@@ -6350,7 +6415,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@2, rimraf@^2.2.8, rimraf@^2.3.2, rimraf@^2.3.4, rimraf@^2.4.3, rimraf@^2.4.4, rimraf@^2.5.1, rimraf@^2.5.2, rimraf@^2.5.3, rimraf@^2.5.4, rimraf@^2.6.1:
+rimraf@2, rimraf@^2.2.8, rimraf@^2.3.2, rimraf@^2.3.4, rimraf@^2.4.3, rimraf@^2.4.4, rimraf@^2.5.1, rimraf@^2.5.2, rimraf@^2.5.3, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
@@ -6420,7 +6485,7 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
-samsam@1.x, samsam@^1.1.3:
+samsam@1.3.0, samsam@1.x, samsam@^1.1.3:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/samsam/-/samsam-1.3.0.tgz#8d1d9350e25622da30de3e44ba692b5221ab7c50"
 
@@ -6595,6 +6660,19 @@ sinon@^3.2.1:
     samsam "^1.1.3"
     text-encoding "0.6.4"
     type-detect "^4.0.0"
+
+sinon@^6.0.1:
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-6.1.4.tgz#b67f7a7b7fe2496042b54a5c2f425e2d699927a2"
+  dependencies:
+    "@sinonjs/formatio" "^2.0.0"
+    "@sinonjs/samsam" "^2.0.0"
+    diff "^3.5.0"
+    lodash.get "^4.4.2"
+    lolex "^2.7.1"
+    nise "^1.4.2"
+    supports-color "^5.4.0"
+    type-detect "^4.0.8"
 
 slash@^1.0.0:
   version "1.0.0"
@@ -6963,6 +7041,12 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
+supports-color@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
+  dependencies:
+    has-flag "^3.0.0"
+
 symlink-or-copy@^1.0.0, symlink-or-copy@^1.0.1, symlink-or-copy@^1.1.8:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symlink-or-copy/-/symlink-or-copy-1.2.0.tgz#5d49108e2ab824a34069b68974486c290020b393"
@@ -7185,6 +7269,10 @@ type-check@~0.3.2:
 type-detect@^4.0.0:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.5.tgz#d70e5bc81db6de2a381bcaca0c6e0cbdc7635de2"
+
+type-detect@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
 
 type-is@~1.6.15:
   version "1.6.15"
