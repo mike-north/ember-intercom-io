@@ -1293,7 +1293,7 @@ broccoli-middleware@^1.0.0:
     handlebars "^4.0.4"
     mime "^1.2.11"
 
-broccoli-persistent-filter@^1.0.3, broccoli-persistent-filter@^1.1.6, broccoli-persistent-filter@^1.4.0, broccoli-persistent-filter@^1.4.3:
+broccoli-persistent-filter@^1.1.6, broccoli-persistent-filter@^1.4.0, broccoli-persistent-filter@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/broccoli-persistent-filter/-/broccoli-persistent-filter-1.4.3.tgz#3511bc52fc53740cda51621f58a28152d9911bc1"
   dependencies:
@@ -2194,12 +2194,12 @@ ember-cli-htmlbars-inline-precompile@^1.0.0, ember-cli-htmlbars-inline-precompil
     heimdalljs-logger "^0.1.7"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@^2.0.1:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-2.0.3.tgz#e116e1500dba12f29c94b05b9ec90f52cb8bb042"
+ember-cli-htmlbars@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-3.0.0.tgz#4977b9eddbc725f8da25090ecdbba64533b2eadc"
   dependencies:
-    broccoli-persistent-filter "^1.0.3"
-    hash-for-dep "^1.0.2"
+    broccoli-persistent-filter "^1.4.3"
+    hash-for-dep "^1.2.3"
     json-stable-stringify "^1.0.0"
     strip-bom "^3.0.0"
 
@@ -3606,7 +3606,7 @@ has-values@^1.0.0:
     is-number "^3.0.0"
     kind-of "^4.0.0"
 
-hash-for-dep@^1.0.2:
+hash-for-dep@^1.0.2, hash-for-dep@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/hash-for-dep/-/hash-for-dep-1.2.3.tgz#5ec69fca32c23523972d52acb5bb65ffc3664cab"
   dependencies:
