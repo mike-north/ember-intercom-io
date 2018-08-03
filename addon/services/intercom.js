@@ -72,5 +72,9 @@ export default Service.extend({
 
   update(properties = {}) {
     scheduleOnce('afterRender', () => this.get('api')('update', properties));
+  },
+
+  trackEvent(name, metaData = {}) {
+    scheduleOnce('afterRender', () => this.get('api')('trackEvent', name, metaData));
   }
 });
