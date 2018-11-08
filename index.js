@@ -4,7 +4,7 @@
 var path = require('path');
 
 module.exports = {
-  name: 'ember-intercom-io',
+  name: require('./package').name,
 
   included: function(app) {
     this._super.included(app);
