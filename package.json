@@ -10,7 +10,9 @@
     "build": "ember build",
     "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "start": "ember server",
-    "test": "ember try:each"
+    "test": "ember try:each",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
   },
   "repository": "https://github.com/mike-north/ember-intercom-io",
   "engines": {
@@ -19,6 +21,9 @@
   "author": "Mike North <michael.l.north@gmail.com> (http://mike.works)",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "7.2.1",
+    "@commitlint/config-conventional": "7.1.2",
+    "@commitlint/travis-cli": "7.2.1",
     "@types/ember": "^2.8.4",
     "broccoli-asset-rev": "^2.4.5",
     "ember-cli": "~3.0.0",
@@ -46,16 +51,34 @@
     "greenkeeper-lockfile": "^1.2.1",
     "loader.js": "^4.0.10"
   },
+  "optionalDependencies": {
+    "@mike-north/js-lib-renovate-config": "^0.0.1",
+    "@mike-north/js-lib-semantic-release-config": "^0.0.0-development",
+    "semantic-release": "^15.9.12"
+  },
   "keywords": [
     "ember-addon",
     "intercom",
     "chat"
   ],
   "dependencies": {
-    "ember-cli-babel": "^6.6.0",
+    "ember-cli-babel": "^6.16.0",
     "ember-cli-htmlbars": "^2.0.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "./node_modules/.bin/commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  },
+  "release": {
+    "extends": "@mike-north/js-lib-semantic-release-config"
   }
 }
