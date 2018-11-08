@@ -8,7 +8,7 @@ import intercom from 'intercom';
 export default Service.extend({
   init() {
     this._super(...arguments);
-    set(this, "user", { email: null, name: null, hash: null, user_id: null });
+    set(this, 'user', { email: null, name: null, hash: null, user_id: null });
   },
 
   api: intercom,
@@ -36,8 +36,11 @@ export default Service.extend({
   user: null,
 
   _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-    return !!get(this, 'user') && !!get(this, '_userNameProp') &&
-      (!!get(this, '_userEmailProp') || !!get(this, "_userIdProp"));
+    return (
+      !!get(this, 'user') &&
+      !!get(this, '_userNameProp') &&
+      (!!get(this, '_userEmailProp') || !!get(this, '_userIdProp'))
+    );
   }),
 
   _intercomBootConfig: computed('_hasUserContext', function() {
