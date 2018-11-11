@@ -1,4 +1,4 @@
-import { merge } from '@ember/polyfills';
+import { assign } from '@ember/polyfills';
 import Service from '@ember/service';
 import { computed, get, set } from '@ember/object';
 import { assert } from '@ember/debug';
@@ -65,7 +65,7 @@ export default Service.extend({
   }),
 
   start(bootConfig = {}) {
-    let _bootConfig = merge(get(this, '_intercomBootConfig'), bootConfig);
+    let _bootConfig = assign(get(this, '_intercomBootConfig'), bootConfig);
     scheduleOnce('afterRender', () => this.get('api')('boot', _bootConfig));
   },
 
