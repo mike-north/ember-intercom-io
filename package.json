@@ -46,7 +46,7 @@
     "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-node": "^7.0.1",
     "greenkeeper-lockfile": "1.14.0",
-    "husky": "1.1.2",
+    "husky": "1.2.0",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0"
   },
