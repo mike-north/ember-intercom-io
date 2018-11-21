@@ -5250,7 +5250,7 @@ exec-sh@^0.3.2:
   resolved "https://registry.yarnpkg.com/exec-sh/-/exec-sh-0.3.2.tgz#6738de2eb7c8e671d0366aea0b0db8c6f7d7391b"
   integrity sha512-9sLAvzhI5nc8TpuQUh4ahMdCrWT00wPWz7j47/emR5+2qEfoZP5zzUXvx+vdx+H6ohhnsYC31iX04QLYJK8zTg==
 
-execa@0.9.0, execa@^0.9.0:
+execa@0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.9.0.tgz#adb7ce62cf985071f60580deb4a88b9e34712d01"
   integrity sha512-BbUMBiX4hqiHZUA5+JujIjNb6TyAlp2D5KLheMjMluwOuzcnylDL4AxZYLLn1n2AGB49eSWwyKvvEQoRpnAtmA==
@@ -6805,13 +6805,13 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-husky@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-1.1.2.tgz#574c2bb16958db8a8120b63306efaff110525c23"
-  integrity sha512-9TdkUpBeEOjz0AnFdUN4i3w8kEbOsVs9/WSeJqWLq2OO6bcKQhVW64Zi+pVd/AMRLpN3QTINb6ZXiELczvdmqQ==
+husky@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-1.2.0.tgz#d631dda1e4a9ee8ba69a10b0c51a0e2c66e711e5"
+  integrity sha512-/ib3+iycykXC0tYIxsyqierikVa9DA2DrT32UEirqNEFVqOj1bFMTgP3jAz8HM7FgC/C8pc/BTUa9MV2GEkZaA==
   dependencies:
     cosmiconfig "^5.0.6"
-    execa "^0.9.0"
+    execa "^1.0.0"
     find-up "^3.0.0"
     get-stdin "^6.0.0"
     is-ci "^1.2.1"
