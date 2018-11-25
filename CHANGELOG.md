@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/mike-north/ember-intercom-io/compare/v1.1.1...v1.1.2) (2018-11-25)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([7c5971c](https://github.com/mike-north/ember-intercom-io/commit/7c5971c))
+
 ## [1.1.1](https://github.com/mike-north/ember-intercom-io/compare/v1.1.0...v1.1.1) (2018-11-25)
 
 
