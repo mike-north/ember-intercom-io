@@ -26,6 +26,13 @@ module.exports = function(environment) {
   intercom: {
     appId: null, // <-- REPLACE WITH YOUR INTERCOM.IO app_id
     enabled: true, // <-- Setting to false in your testing environment prevents unneccessary network requests (true by default)
+    userProperties: {
+      createdAtProp: 'createdAt',
+      emailProp: 'email',
+      nameProp: 'name',
+      userHashProp: 'hash',
+      userIdProp: 'id'
+    }
   },
   ...
 };
@@ -38,15 +45,15 @@ In the intercom.io world, a lead is a visitor to your site or app, without an em
 
 You can make `ember-intercom-io` aware of a "user" context (shifting into "users" mode instead of "leads" mode) by adding an object to the `intercom` service (i.e., your user authentication service).
 
+When the application updates the `intercom.user` object, changes will be sent to Intercom and reflected in your Intercom dashboard.
+
 **app/services/authentication.js**
 
 ```js
-import Ember from 'ember';
+import Service, {inject as service} from '@ember/service';
 
-const { inject } = Ember;
-
-export default Ember.Service.extend({
-  intercom: inject.service(), // the intercom service
+export default Service.extend({
+  intercom: service(), // the intercom service
   didLogin(user) {
     ...
     this.get('intercom').set('user.name', 'Joe Username');
@@ -56,6 +63,97 @@ export default Ember.Service.extend({
 });
 
 ```
+
+#### Custom Properties
+
+To send custom properties on to intercom, add them to the `intercom.user` object. All property names will be underscored prior to being sent.
+undefined values will be removed (however, `null` is kept).
+
+```js
+  let customProperties = {
+    myCustomThing: 1,
+    numberOfCats: false,
+    notDefined: undefined
+  }
+  set(this, 'intercom.user', customProperties);
+```
+
+becomes
+
+```js
+{
+  my_custom_thing: 1,
+  number_of_cats: false
+}
+```
+
+## API
+
+The `intercom` service exposes several public API methods that match Intercom.com's
+existing Javascript API. For full details on the client API, [read the Intercom docs.](https://developers.intercom.com/v2.0/docs/intercom-javascript#section-intercomonhide)
+
+### Properties
+
+|    Name      |      Type         |
+------------------------------------
+| autoUpdate   | Boolean           |
+| hideDefaultLauncher | Boolean    |
+| isOpen       | Boolean           |
+| isBooted     | Boolean           |
+| unreadCount  | Integer           |
+| user         | Object            |
+
+### Methods
+
+The following intercom methods are implemented. See `services/intercom.js` for full
+details.
+
+`boot()`
+
+`update()`
+
+`shutdown()`
+
+`hide()`
+
+`show()`
+
+`showMessages()`
+
+`showNewMessage()`
+
+`trackEvent()`
+
+`getVisitorId()` Returns the current id of the logged in user.
+
+### Events
+
+Subscribe to events in your app with event listeners:
+
+```js
+//fancy-component.js
+
+...
+
+intercom: service(),
+newMessageAlert: on('intercom.unreadCountChange', function() {
+    alert('Unread Count Changed!');
+}),
+
+...
+
+```
+
+**Available Events**
+
+(Read the Intercom documentation for full details)[https://developers.intercom.com/v2.0/docs/intercom-javascript#section-intercomonhide]
+
+| Ember Event | Intercom Event |
+--------------------------------
+| hide        | `onHide`       |
+| show        | `onShow`       |
+| unreadCountChange | `onUnreadCountChange` |
+
 
 ## Installation
 
