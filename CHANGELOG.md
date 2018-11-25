@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/mike-north/ember-intercom-io/compare/v1.0.1...v1.1.0) (2018-11-25)
+
+
+### Features
+
+* Advanced API integration from PR 143 ([#172](https://github.com/mike-north/ember-intercom-io/issues/172)) ([fddf27d](https://github.com/mike-north/ember-intercom-io/commit/fddf27d))
+
 ## [1.0.1](https://github.com/mike-north/ember-intercom-io/compare/v1.0.0...v1.0.1) (2018-11-12)
 
 
