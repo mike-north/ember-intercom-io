@@ -6434,10 +6434,10 @@ graceful-fs@~4.1.11:
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
   integrity sha1-TK+tdrxi8C+gObL5Tpo906ORpyU=
 
-greenkeeper-lockfile@1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/greenkeeper-lockfile/-/greenkeeper-lockfile-1.14.0.tgz#c6c25d62cd08fcd30ccdb5f11f171f7c80a1a7ce"
-  integrity sha512-sx51rltNBjkhNpf9aP+1M1Dyg4jgRswlSQzS2AuBTGUyZltSK0R2xhfPWny0ywI9L0F//H3e69Utn3e86pOzrg==
+greenkeeper-lockfile@1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/greenkeeper-lockfile/-/greenkeeper-lockfile-1.15.1.tgz#289728213f8d4731596fdb011e3c6eb24ee96a73"
+  integrity sha512-9NxU5EfWYzv8dEmpAFrFjhJkHcc2OVOPecaH9Td43546vsK88HB0Qet4Pv1PeW1s1sEz2kaF3LksolLKq2TEPw==
   dependencies:
     lodash "^4.17.4"
     require-relative "^0.8.7"
