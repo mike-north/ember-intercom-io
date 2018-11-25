@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/mike-north/ember-intercom-io/compare/v1.0.0...v1.0.1) (2018-11-12)
+
+
+### Bug Fixes
+
+* CI race condition ([335fe86](https://github.com/mike-north/ember-intercom-io/commit/335fe86))
+* oldest LTS runs node10 in CI ([1129565](https://github.com/mike-north/ember-intercom-io/commit/1129565))
+* replace Ember.merge w/ Ember.assign ([b9006c0](https://github.com/mike-north/ember-intercom-io/commit/b9006c0))
+
 # 1.0.0 (2018-11-10)
 
 
