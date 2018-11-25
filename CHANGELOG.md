@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/mike-north/ember-intercom-io/compare/v1.1.0...v1.1.1) (2018-11-25)
+
+
+### Bug Fixes
+
+* no need for optionalDependencies ([4facff5](https://github.com/mike-north/ember-intercom-io/commit/4facff5))
+
 # [1.1.0](https://github.com/mike-north/ember-intercom-io/compare/v1.0.1...v1.1.0) (2018-11-25)
 
 
