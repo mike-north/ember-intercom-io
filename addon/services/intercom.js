@@ -2,17 +2,16 @@ import { assign } from '@ember/polyfills';
 import Service from '@ember/service';
 import { computed, get, observer, set } from '@ember/object';
 import { assert, warn } from '@ember/debug';
-import { scheduleOnce } from '@ember/runloop';
 import intercom from 'intercom';
-import { run } from '@ember/runloop';
-import { typeOf } from "@ember/utils";
-import { underscore } from "@ember/string"	;
+import { next } from '@ember/runloop';
+import { typeOf } from '@ember/utils';
+import { underscore } from '@ember/string';
 import Evented from '@ember/object/evented';
 import { alias } from '@ember/object/computed';
 
 const WarnOption = {
   id: 'ember-intercom-io.missing-data'
-}
+};
 
 /**
  * Normalization function for converting intercom data to a consistent format.
@@ -29,7 +28,7 @@ const WarnOption = {
 function normalizeIntercomMetadata(data) {
   let result = {};
   let val;
-  Object.keys(data).forEach((key) => {
+  Object.keys(data).forEach(key => {
     val = data[key];
     if (typeOf(val) === 'object') {
       result[underscore(key)] = normalizeIntercomMetadata(val);
@@ -79,21 +78,21 @@ export default Service.extend(Evented, {
   }),
 
   /**
-  * Indicates the open state of the Intercom panel
-  *
-  * @public
-  * @type {Boolean}
-  */
-   isOpen: false,
+   * Indicates the open state of the Intercom panel
+   *
+   * @public
+   * @type {Boolean}
+   */
+  isOpen: false,
 
-   /**
-    * Indicates whether the Intercom boot command has been called.
-    *
-    * @public
-    * @readonly
-    * @type {Boolean}
-    */
-   isBooted: false,
+  /**
+   * Indicates whether the Intercom boot command has been called.
+   *
+   * @public
+   * @readonly
+   * @type {Boolean}
+   */
+  isBooted: false,
   _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
     return (
       !!get(this, 'user') &&
@@ -101,28 +100,28 @@ export default Service.extend(Evented, {
       (!!get(this, '_userEmailProp') || !!get(this, '_userIdProp'))
     );
   }),
-   /**
-    * Reports the number of unread messages
-    *
-    * @public
-    * @type {Number}
-    */
-   unreadCount: 0,
+  /**
+   * Reports the number of unread messages
+   *
+   * @public
+   * @type {Number}
+   */
+  unreadCount: 0,
 
-   /**
-    * If true, will automatically update intercom when changes to user object are made.
-    *
-    * @type {Boolean}
-    * @public
-    */
-   autoUpdate: true,
+  /**
+   * If true, will automatically update intercom when changes to user object are made.
+   *
+   * @type {Boolean}
+   * @public
+   */
+  autoUpdate: true,
 
-   /**
-    * Hide the default Intercom launcher button
-    *
-    * @public
-    * @type {Boolean}
-    */
+  /**
+   * Hide the default Intercom launcher button
+   *
+   * @public
+   * @type {Boolean}
+   */
   hideDefaultLauncher: false,
 
   /**
@@ -132,7 +131,14 @@ export default Service.extend(Evented, {
    */
   appId: alias('config.appId'),
 
+  start(bootConfig = {}) {
+    let _bootConfig = assign(get(this, '_intercomBootConfig'), bootConfig);
+    this.boot(_bootConfig);
+  },
 
+  stop() {
+    return this.shutdown();
+  },
 
   /**
    * Boot intercom window
@@ -152,7 +158,7 @@ export default Service.extend(Evented, {
    */
   update(config = {}) {
     if (!this.get('isBooted')) {
-        warn('Cannot call update before boot', WarnOption);
+      warn('Cannot call update before boot', WarnOption);
       return;
     }
 
@@ -160,7 +166,10 @@ export default Service.extend(Evented, {
     if (_hasUserContext) {
       this._callIntercomMethod('update', normalizeIntercomMetadata(config));
     } else {
-      warn('Refusing to send update to Intercom because user context is incomplete. Missing userId or email', WarnOption);
+      warn(
+        'Refusing to send update to Intercom because user context is incomplete. Missing userId or email',
+        WarnOption
+      );
     }
   },
 
@@ -183,9 +192,9 @@ export default Service.extend(Evented, {
   },
 
   /**
-  * hide intercom window
-  * @public
-  */
+   * hide intercom window
+   * @public
+   */
   hide() {
     return this._wrapIntercomCallInPromise('hide', 'hide');
   },
@@ -242,15 +251,6 @@ export default Service.extend(Evented, {
     return this.get('api')('getVisitorId');
   },
 
-  start(bootConfig = {}) {
-    let _bootConfig = assign(get(this, '_intercomBootConfig'), bootConfig);
-    scheduleOnce('afterRender', () => this.get('api')('boot', _bootConfig));
-  },
-
-  stop() {
-    return this.shutdown();
-  },
-
   /**
    * Private on hide
    * @private
@@ -271,10 +271,10 @@ export default Service.extend(Evented, {
   },
 
   /**
-  * Handle onUnreadCountChange Events
-  * @param  {[type]} count [description]
-  * @private
-  */
+   * Handle onUnreadCountChange Events
+   * @param  {[type]} count [description]
+   * @private
+   */
   _onUnreadCountChange(count) {
     this.set('unreadCount', Number(count));
   },
@@ -283,18 +283,19 @@ export default Service.extend(Evented, {
     if (this._hasEventHandlers) {
       return;
     }
-    this._callIntercomMethod('onHide', () => run(this, this._onHide));
-    this._callIntercomMethod('onShow', () => run(this, this._onShow));
-    this._callIntercomMethod('onUnreadCountChange', (count) => run(this, this._onUnreadCountChange, count));
+    this._callIntercomMethod('onHide', () => next(this, '_onHide'));
+    this._callIntercomMethod('onShow', () => next(this, '_onShow'));
+    this._callIntercomMethod('onUnreadCountChange', count => {
+      this._onUnreadCountChange(count);
+    });
     this._hasEventHandlers = true;
   },
 
   _wrapIntercomCallInPromise(intercomMethod, eventName, ...args) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       let isOpen = this.get('isOpen');
-      if (eventName === 'show' && isOpen
-          || eventName === 'hide' && !isOpen) {
-        run.next(this, resolve);
+      if ((eventName === 'show' && isOpen) || (eventName === 'hide' && !isOpen)) {
+        next(this, resolve);
       } else {
         this.one(eventName, resolve);
       }
@@ -303,17 +304,15 @@ export default Service.extend(Evented, {
   },
 
   _callIntercomMethod(methodName, ...args) {
-    scheduleOnce('afterRender', () => {
-      let intercom = this.get('api');
-      intercom(methodName, ...args);
-    });
+    let intercom = this.get('api');
+    intercom(methodName, ...args);
   },
 
   userDataDidChange: observer('user.@each', function() {
     if (this.get('autoUpdate') && this.get('isBooted')) {
       let user = this.get('_computedUser');
-      let appId = this.get('appId')
-      let config = {appId, ...user };
+      let appId = this.get('appId');
+      let config = { app_id: appId, ...user };
       this.update(config);
     }
   }),
@@ -323,11 +322,18 @@ export default Service.extend(Evented, {
    * @private
    * @type {[type]}
    */
-  _computedUser: computed('user.@each', 'user', '_userHashProp', '_userIdProp',
-    '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function () {
+  _computedUser: computed(
+    'user.@each',
+    'user',
+    '_userHashProp',
+    '_userIdProp',
+    '_userNameProp',
+    '_userEmailProp',
+    '_userCreatedAtProp',
+    function() {
       assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', this.get('appId'));
 
-      let obj = {}
+      let obj = {};
       if (this.get('user')) {
         let userProps = Object.values(get(this, 'config.userProperties')),
           user = get(this, 'user'),
@@ -349,9 +355,10 @@ export default Service.extend(Evented, {
         }
       }
       return obj;
-    }),
+    }
+  ),
 
-  _intercomBootConfig: computed('config','user.@each', '_hasUserContext', 'hideDefaultLauncher', function() {
+  _intercomBootConfig: computed('config', 'user.@each', '_hasUserContext', 'hideDefaultLauncher', function() {
     let appId = get(this, 'config.appId');
     let user = get(this, '_computedUser');
     let _hasUserContext = get(this, '_hasUserContext');
@@ -359,7 +366,7 @@ export default Service.extend(Evented, {
 
     assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
 
-    let obj = { appId };
+    let obj = { app_id: appId };
     if (hideDefaultLauncher) {
       obj.hideDefaultLauncher = true;
     }
@@ -368,7 +375,6 @@ export default Service.extend(Evented, {
       obj = { ...obj, ...user };
     }
 
-    return obj;
+    return normalizeIntercomMetadata(obj);
   })
-
 });
