@@ -1,7 +1,5 @@
 # ember-intercom-io
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/mike-north/ember-intercom-io.svg)](https://greenkeeper.io/)
-
 [![Build Status](https://travis-ci.org/mike-north/ember-intercom-io.svg?branch=master)](https://travis-ci.org/mike-north/ember-intercom-io)
 [![Code Climate](https://codeclimate.com/github/mike-north/ember-intercom-io/badges/gpa.svg)](https://codeclimate.com/github/mike-north/ember-intercom-io)
 [![Dependency Status](https://david-dm.org/mike-north/ember-intercom-io.svg)](https://david-dm.org/mike-north/ember-intercom-io)
@@ -41,7 +39,6 @@ module.exports = function(environment) {
 
 ```
 
-
 #### Users vs Leads
 
 In the intercom.io world, a lead is a visitor to your site or app, without an email or name associated with them. A user has a name and email, and is a good construct for tracking the history of all interactions w/ a single person.
@@ -51,6 +48,7 @@ You can make `ember-intercom-io` aware of a "user" context (shifting into "users
 When the application updates the `intercom.user` object, changes will be sent to Intercom and reflected in your Intercom dashboard.
 
 **app/services/authentication.js**
+
 ```js
 import Service, {inject as service} from '@ember/service';
 
@@ -159,25 +157,26 @@ newMessageAlert: on('intercom.unreadCountChange', function() {
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+- `git clone` this repository
+- `npm install`
+- `bower install`
 
 ### Linting
 
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+- `npm run lint:hbs`
+- `npm run lint:js`
+- `npm run lint:js -- --fix`
 
 ### Running tests
 
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
+- `ember test` – Runs the test suite on the current Ember version
+- `ember test --server` – Runs the test suite in "watch mode"
+- `ember try:each` – Runs the test suite against multiple Ember versions
 
 ### Running the dummy application
 
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+- `ember serve`
+- Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 

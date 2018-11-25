@@ -1,3 +1,4 @@
+import { assign } from '@ember/polyfills';
 import Service from '@ember/service';
 import { computed, get, observer, set } from '@ember/object';
 import { assert, warn } from '@ember/debug';
@@ -48,7 +49,7 @@ function normalizeIntercomMetadata(data) {
 export default Service.extend(Evented, {
   init() {
     this._super(...arguments);
-    set(this, 'user', {email: null, name: null, hash: null, user_id: null});
+    set(this, 'user', { email: null, name: null, hash: null, user_id: null });
   },
 
   api: intercom,
@@ -93,7 +94,13 @@ export default Service.extend(Evented, {
     * @type {Boolean}
     */
    isBooted: false,
-
+  _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
+    return (
+      !!get(this, 'user') &&
+      !!get(this, '_userNameProp') &&
+      (!!get(this, '_userEmailProp') || !!get(this, '_userIdProp'))
+    );
+  }),
    /**
     * Reports the number of unread messages
     *
@@ -236,9 +243,8 @@ export default Service.extend(Evented, {
   },
 
   start(bootConfig = {}) {
-    let config = get(this, '_intercomBootConfig');
-    bootConfig = {...bootConfig, ...config}
-    return this.boot(bootConfig);
+    let _bootConfig = assign(get(this, '_intercomBootConfig'), bootConfig);
+    scheduleOnce('afterRender', () => this.get('api')('boot', _bootConfig));
   },
 
   stop() {
@@ -344,11 +350,6 @@ export default Service.extend(Evented, {
       }
       return obj;
     }),
-
-  _hasUserContext: computed('user', 'user.@each', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
-    return !!get(this, 'user') && !!get(this, '_userNameProp') &&
-      (!!get(this, '_userEmailProp') || !!get(this, '_userIdProp'));
-  }),
 
   _intercomBootConfig: computed('config','user.@each', '_hasUserContext', 'hideDefaultLauncher', function() {
     let appId = get(this, 'config.appId');

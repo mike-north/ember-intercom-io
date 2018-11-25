@@ -33,7 +33,7 @@ module.exports = function(environment) {
       'style-src': ['http://localhost:4200', "'unsafe-inline'"].join(' ')
     },
     intercom: {
-      appId: 'asdfasdf'
+      appId: process.env.INTERCOM_APP_ID || 'null'
     },
     APP: {
       // Here you can pass flags/options to your application instance
