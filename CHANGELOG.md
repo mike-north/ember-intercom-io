@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/mike-north/ember-intercom-io/compare/v1.1.2...v1.1.3) (2018-11-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-sinon-qunit to v3 ([#161](https://github.com/mike-north/ember-intercom-io/issues/161)) ([bd414ba](https://github.com/mike-north/ember-intercom-io/commit/bd414ba))
+
 ## [1.1.2](https://github.com/mike-north/ember-intercom-io/compare/v1.1.1...v1.1.2) (2018-11-25)
 
 
