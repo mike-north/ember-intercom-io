@@ -373,7 +373,7 @@ export default Service.extend(Evented, {
     }
 
     if (_hasUserContext) {
-      obj = assign({}, ...obj, ...user);
+      obj = assign({}, obj, user);
     }
 
     return normalizeIntercomMetadata(obj);
