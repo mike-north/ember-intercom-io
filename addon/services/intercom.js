@@ -308,11 +308,12 @@ export default Service.extend(Evented, {
     intercom(methodName, ...args);
   },
 
+  // eslint-disable-next-line ember/no-observers
   userDataDidChange: observer('user.@each', function() {
     if (this.get('autoUpdate') && this.get('isBooted')) {
       let user = this.get('_computedUser');
       let appId = this.get('appId');
-      let config = { app_id: appId, ...user };
+      let config = assign({ app_id: appId}, user );
       this.update(config);
     }
   }),
@@ -372,7 +373,7 @@ export default Service.extend(Evented, {
     }
 
     if (_hasUserContext) {
-      obj = { ...obj, ...user };
+      obj = assign({}, ...obj, ...user);
     }
 
     return normalizeIntercomMetadata(obj);
