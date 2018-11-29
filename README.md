@@ -95,7 +95,7 @@ existing Javascript API. For full details on the client API, [read the Intercom 
 ### Properties
 
 |    Name      |      Type         |
-------------------------------------
+---| --- | 
 | autoUpdate   | Boolean           |
 | hideDefaultLauncher | Boolean    |
 | isOpen       | Boolean           |
