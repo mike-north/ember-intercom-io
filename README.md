@@ -6,7 +6,7 @@
 [![devDependency Status](https://david-dm.org/mike-north/ember-intercom-io/dev-status.svg)](https://david-dm.org/mike-north/ember-intercom-io#info=devDependencies)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-intercom-io.svg)](http://emberobserver.com/addons/ember-intercom-io)
 
-[Intercom.io](http://intercom.io) for Ember.js apps.
+[Intercom.io](http://intercom.io) integration for Ember.js apps.
 
 ## Setup
 
