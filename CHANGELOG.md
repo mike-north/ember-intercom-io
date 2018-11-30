@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/mike-north/ember-intercom-io/compare/v1.1.3...v1.1.4) (2018-11-30)
+
+
+### Bug Fixes
+
+* update README ([7764506](https://github.com/mike-north/ember-intercom-io/commit/7764506)), closes [#175](https://github.com/mike-north/ember-intercom-io/issues/175)
+
 ## [1.1.3](https://github.com/mike-north/ember-intercom-io/compare/v1.1.2...v1.1.3) (2018-11-26)
 
 
