@@ -95,7 +95,7 @@ existing Javascript API. For full details on the client API, [read the Intercom 
 ### Properties
 
 |    Name      |      Type         |
-------------------------------------
+---| --- | 
 | autoUpdate   | Boolean           |
 | hideDefaultLauncher | Boolean    |
 | isOpen       | Boolean           |
@@ -149,7 +149,7 @@ newMessageAlert: on('intercom.unreadCountChange', function() {
 (Read the Intercom documentation for full details)[https://developers.intercom.com/v2.0/docs/intercom-javascript#section-intercomonhide]
 
 | Ember Event | Intercom Event |
---------------------------------
+--- | --- |
 | hide        | `onHide`       |
 | show        | `onShow`       |
 | unreadCountChange | `onUnreadCountChange` |
@@ -159,7 +159,6 @@ newMessageAlert: on('intercom.unreadCountChange', function() {
 
 - `git clone` this repository
 - `npm install`
-- `bower install`
 
 ### Linting
 
