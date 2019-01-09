@@ -1064,7 +1064,7 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
   integrity sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==
 
-"@sinonjs/commons@^1.0.2", "@sinonjs/commons@^1.2.0":
+"@sinonjs/commons@^1.2.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.3.0.tgz#50a2754016b6f30a994ceda6d9a0a8c36adda849"
   integrity sha512-j4ZwhaHmwsCb4DlDOIWnI5YyKDNMoNThsmwEpfHx6a1EpsGZ9qYLxP++LMlmBRjtGptGHFsGItJ768snllFWpA==
@@ -4471,7 +4471,7 @@ ember-cli-babel@^6.0.0-beta.7:
     ember-cli-version-checker "^2.1.0"
     semver "^5.4.1"
 
-ember-cli-babel@^6.16.0, ember-cli-babel@^6.6.0:
+ember-cli-babel@^6.16.0:
   version "6.17.2"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.17.2.tgz#f0d53d2fb95e70c15d8db84760d045f88f458f69"
   integrity sha512-9KcCvF1PcelEFTSiJ/Ld20tfuW9acMkwHC/xINLsmwqJVDbm3oEqWtiFDZ5ebaC278O5I0GqNJWJLYNoWMNZ8g==
@@ -4512,7 +4512,7 @@ ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.3:
     ensure-posix-path "^1.0.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.1.4, ember-cli-babel@^7.2.0:
+ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.4, ember-cli-babel@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.2.0.tgz#5c5bd877fb73f6fb198c878d3127ba9e18e9b8a0"
   integrity sha512-vwx/AgPD7P4ebgTFJMqFovbrSNCA02UMuItlR/Il16njYjgN9ZzjUqgYxaylN7k8RF88wdJq3jrtqyMS/oOq8A==
@@ -4904,15 +4904,15 @@ ember-router-generator@^1.2.3:
   dependencies:
     recast "^0.11.3"
 
-ember-sinon-qunit@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/ember-sinon-qunit/-/ember-sinon-qunit-3.3.0.tgz#3a388faa4593555bc0fd675daba79dcc7a446a71"
-  integrity sha512-Cup1tWUHej5C3VBSmXjsJBvstCeoBn0KX6ugLXS9kwtyQWPuPqrsFp9VXTKHNOsfFh1+sidSGkl8JKMt8AKl1w==
+ember-sinon-qunit@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/ember-sinon-qunit/-/ember-sinon-qunit-3.4.0.tgz#6c6ea96273572825e8789c7214e3fd3d9ef4c376"
+  integrity sha512-Xn8+GEkxBNngtfOYy3qo5Mw1m0o3PJgd1/veGU2BdixxWrEd2U5ZolYFxd6vNHM1/EVx5urlDqWl6jeedJr/Xw==
   dependencies:
-    ember-cli-babel "^7.1.0"
-    ember-sinon "~2.2.0"
+    ember-cli-babel "^7.1.2"
+    ember-sinon "~3.1.0"
 
-ember-sinon@3.1.0:
+ember-sinon@3.1.0, ember-sinon@~3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ember-sinon/-/ember-sinon-3.1.0.tgz#76733aae1cc32c9426202bdc0f5b61552753a7df"
   integrity sha512-/UARfA4UBlhhmtvk6Vcvj3CH2foThqCORbXiUiQUBISNxqtZFdwGpnJMt4vY8etyArmop18B33UTmZzNKbfhmg==
@@ -4921,16 +4921,6 @@ ember-sinon@3.1.0:
     broccoli-merge-trees "^3.0.0"
     ember-cli-babel "^7.1.3"
     sinon "^7.1.1"
-
-ember-sinon@~2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/ember-sinon/-/ember-sinon-2.2.0.tgz#acb628dec695d6817bd17fd6c25a4d70821851e9"
-  integrity sha512-BgjHsgy8rli8FaJ1MWkscIKRpoFmzYhNkDtwBWQrUCzQx1bp3+irVpseAPqBnuEB4FPFGGQV5ahDpFcckmIsAw==
-  dependencies:
-    broccoli-funnel "^2.0.0"
-    broccoli-merge-trees "^3.0.0"
-    ember-cli-babel "^6.6.0"
-    sinon "^6.0.1"
 
 ember-source-channel-url@1.1.0:
   version "1.1.0"
@@ -8461,7 +8451,7 @@ log-symbols@^2.2.0:
   dependencies:
     chalk "^2.0.1"
 
-lolex@^2.3.2, lolex@^2.7.5:
+lolex@^2.3.2:
   version "2.7.5"
   resolved "https://registry.yarnpkg.com/lolex/-/lolex-2.7.5.tgz#113001d56bfc7e02d56e36291cc5c413d1aa0733"
   integrity sha512-l9x0+1offnKKIzYVjyXU2SiwhXDLekRzKyhnbyldPHvC7BvLPVpdNUNR2KeMAiCN2D/kLNttZgQD5WjSxuBx3Q==
@@ -9104,7 +9094,7 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nise@^1.4.5, nise@^1.4.6:
+nise@^1.4.6:
   version "1.4.6"
   resolved "https://registry.yarnpkg.com/nise/-/nise-1.4.6.tgz#76cc3915925056ae6c405dd8ad5d12bde570c19f"
   integrity sha512-1GedetLKzmqmgwabuMSqPsT7oumdR77SBpDfNNJhADRIeA3LN/2RVqR4fFqwvzhAqcTef6PPCzQwITE/YQ8S8A==
@@ -11538,21 +11528,6 @@ simple-html-tokenizer@^0.5.6:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.5.7.tgz#8eca336ecfbe2b3c6166cbb31b2682088de79f40"
   integrity sha512-APW9iYbkJ5cijjX4Ljhf3VG8SwYPUJT5gZrwci/wieMabQxWFiV5VwsrP5c6GMRvXKEQMGkAB1d9dvW66dTqpg==
-
-sinon@^6.0.1:
-  version "6.3.5"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-6.3.5.tgz#0f6d6a5b4ebaad1f6e8e019395542d1d02c144a0"
-  integrity sha512-xgoZ2gKjyVRcF08RrIQc+srnSyY1JDJtxu3Nsz07j1ffjgXoY6uPLf/qja6nDBZgzYYEovVkFryw2+KiZz11xQ==
-  dependencies:
-    "@sinonjs/commons" "^1.0.2"
-    "@sinonjs/formatio" "^3.0.0"
-    "@sinonjs/samsam" "^2.1.2"
-    diff "^3.5.0"
-    lodash.get "^4.4.2"
-    lolex "^2.7.5"
-    nise "^1.4.5"
-    supports-color "^5.5.0"
-    type-detect "^4.0.8"
 
 sinon@^7.1.1:
   version "7.1.1"
