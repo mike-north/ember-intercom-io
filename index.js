@@ -7,7 +7,7 @@ module.exports = {
   name: require('./package').name,
   options: {
     babel: {
-      plugins: ['transform-object-rest-spread']
+      plugins: ['@babel/proposal-object-rest-spread']
     }
   },
   included: function(app) {
