@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/mike-north/ember-intercom-io/compare/v1.1.5...v1.2.0) (2019-01-23)
+
+
+### Features
+
+* **deps:** plugin-proposal-object-rest-spread ([#200](https://github.com/mike-north/ember-intercom-io/issues/200)) ([f46bc88](https://github.com/mike-north/ember-intercom-io/commit/f46bc88))
+
 ## [1.1.5](https://github.com/mike-north/ember-intercom-io/compare/v1.1.4...v1.1.5) (2018-11-30)
 
 
