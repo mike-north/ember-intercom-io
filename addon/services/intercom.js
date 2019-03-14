@@ -142,13 +142,15 @@ export default Service.extend(Evented, {
 
   /**
    * Boot intercom window
+   * Set isBooted to true if Intercom is booted, and false if intercom is prevented to boot from third party tracking blockers, e.g. "Disconnect"
+   *
    * @param  {Object} [config={}] [description]
    * @public
    */
   boot(config = {}) {
     this._callIntercomMethod('boot', normalizeIntercomMetadata(config));
     this._addEventHandlers();
-    this.set('isBooted', true);
+    this.set('isBooted', window.Intercom.booted);
   },
 
   /**
