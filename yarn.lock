@@ -4746,10 +4746,10 @@ ember-source-channel-url@1.2.0, ember-source-channel-url@^1.0.1, ember-source-ch
   dependencies:
     got "^8.0.1"
 
-ember-source@3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.10.0.tgz#c423f494d573d418bf843d605ea79c21a14ca863"
-  integrity sha512-qHI+1y1gcfHO44+Ld3ty9565UsqlmimfOLe/Ra3jA4Z9h6vJNOdIzr4Bws7by/8kiBqjO1RM+TVe19zglivwoQ==
+ember-source@3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.10.1.tgz#f8b337aa9fa2aacab4dfcfb8460028730df9a84c"
+  integrity sha512-I6AJTuy05WruN77Fb6mXtrt68jPy0pXyfSGXhCzxJMZIfv03jJ89CiRnzkjk6W4YCxVqJnNZigqMxUAXogMcsA==
   dependencies:
     broccoli-funnel "^2.0.2"
     broccoli-merge-trees "^3.0.2"
@@ -4992,10 +4992,10 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-plugin-ember@6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-6.5.0.tgz#1395cd359d80c15a0075f2f561aeeb3560f1ccfe"
-  integrity sha512-yFEoqQlplCNn/HJJ1X/GPze+a8BQBvrNJc14z+Ln5n15emXkvA/SAiEEOiwK8pZVyAMjaihiDAyuMvhXoHovBg==
+eslint-plugin-ember@6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-6.5.1.tgz#2fc747ede7b796e1d3587388b1d173886ce16379"
+  integrity sha512-LkVbGqf5xo/uSLCSGR3nkvWJU/2aRD+okp/rshteBx26Xbf1PNoF/M5JdKiG9eCRAlNKExKr893bGK6eNMn9iA==
   dependencies:
     ember-rfc176-data "^0.3.9"
     snake-case "^2.1.0"
