@@ -93,10 +93,9 @@ export default Service.extend(Evented, {
    * @type {Boolean}
    */
   isBooted: false,
-  _hasUserContext: computed('user', '_userNameProp', '_userEmailProp', '_userCreatedAtProp', function() {
+  _hasUserContext: computed('user', '_userEmailProp', '_userIdProp', function() {
     return (
       !!get(this, 'user') &&
-      !!get(this, '_userNameProp') &&
       (!!get(this, '_userEmailProp') || !!get(this, '_userIdProp'))
     );
   }),
