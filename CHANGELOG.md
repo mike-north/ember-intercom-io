@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/mike-north/ember-intercom-io/compare/v1.2.0...v1.2.1) (2019-09-09)
+
+
+### Bug Fixes
+
+* user name existence as a requirement for valid user context ([9448e28](https://github.com/mike-north/ember-intercom-io/commit/9448e28))
+
 # [1.2.0](https://github.com/mike-north/ember-intercom-io/compare/v1.1.5...v1.2.0) (2019-01-23)
 
 
