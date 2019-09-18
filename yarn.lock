@@ -4944,15 +4944,16 @@ ember-router-generator@^1.2.3:
   dependencies:
     recast "^0.11.3"
 
-ember-sinon-qunit@3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/ember-sinon-qunit/-/ember-sinon-qunit-3.4.0.tgz#6c6ea96273572825e8789c7214e3fd3d9ef4c376"
-  integrity sha512-Xn8+GEkxBNngtfOYy3qo5Mw1m0o3PJgd1/veGU2BdixxWrEd2U5ZolYFxd6vNHM1/EVx5urlDqWl6jeedJr/Xw==
+ember-sinon-qunit@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/ember-sinon-qunit/-/ember-sinon-qunit-4.0.1.tgz#7b8e2fde612406de9a49b13bd85aa8b6997b2074"
+  integrity sha512-qOmcT4InAYOJJ/ypoSYjDJZmTIZpSbTiCHly3U0pE85aPu8PBcNY2ppAXN8ymyZRUV5h5mA956MZZO97kqNjbA==
   dependencies:
-    ember-cli-babel "^7.1.2"
-    ember-sinon "~3.1.0"
+    broccoli-funnel "^2.0.2"
+    ember-cli-babel "^7.7.3"
+    ember-sinon "^4.1.1"
 
-ember-sinon@3.1.0, ember-sinon@~3.1.0:
+ember-sinon@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ember-sinon/-/ember-sinon-3.1.0.tgz#76733aae1cc32c9426202bdc0f5b61552753a7df"
   integrity sha512-/UARfA4UBlhhmtvk6Vcvj3CH2foThqCORbXiUiQUBISNxqtZFdwGpnJMt4vY8etyArmop18B33UTmZzNKbfhmg==
@@ -4961,6 +4962,16 @@ ember-sinon@3.1.0, ember-sinon@~3.1.0:
     broccoli-merge-trees "^3.0.0"
     ember-cli-babel "^7.1.3"
     sinon "^7.1.1"
+
+ember-sinon@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/ember-sinon/-/ember-sinon-4.1.1.tgz#ff6db9e3b9548e269386d9efe1c381e165f03ba5"
+  integrity sha512-CmLjy7LGcTw2uP0WdFSPuXYbI7rwB4U/5EOtVU5h2jXtItrnspLIXBL50kigDzwv+lgE8XhfDVPbJ1QMrIXWXg==
+  dependencies:
+    broccoli-funnel "^2.0.0"
+    broccoli-merge-trees "^3.0.0"
+    ember-cli-babel "^7.7.3"
+    sinon "^7.4.2"
 
 ember-source-channel-url@1.2.0, ember-source-channel-url@^1.0.1, ember-source-channel-url@^1.1.0:
   version "1.2.0"
@@ -11389,7 +11400,7 @@ simple-html-tokenizer@^0.5.8:
   resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.5.8.tgz#3417382f75954ee34515cc4fd32d9918e693f173"
   integrity sha512-0Sq4FvLlQEQODVA6PH2MIrc7tzYO0KT2HzzwvaVLYClWgIsuvaNUOrhrAvTi1pZHrcq7GDB4WiI3ukjqBMxcGQ==
 
-sinon@^7.1.1:
+sinon@^7.1.1, sinon@^7.4.2:
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/sinon/-/sinon-7.4.2.tgz#ecd54158fef2fcfbdb231a3fa55140e8cb02ad6c"
   integrity sha512-pY5RY99DKelU3pjNxcWo6XqeB1S118GBcVIIdDi6V+h6hevn1izcg2xv1hTHW/sViRXU7sUOxt4wTUJ3gsW2CQ==
