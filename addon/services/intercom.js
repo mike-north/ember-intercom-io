@@ -251,6 +251,19 @@ export default Service.extend(Evented, {
   },
 
   /**
+   * If you would like to trigger a tour based on an action a user or visitor
+   * takes in your site or application, you can use this API method.
+   * You need to call this method with the id of the tour you wish to show.
+   * The id of the tour can be found in the “Use tour everywhere” section
+   * of the tour editor.
+   * @public
+   * @param  {number} tourId Tour ID to trigger
+   */
+  startTour(tourId) {
+    return this.get('api')('startTour', tourId);
+  },
+
+  /**
    * Private on hide
    * @private
    * @return {[type]} [description]

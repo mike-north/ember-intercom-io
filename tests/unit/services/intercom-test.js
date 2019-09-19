@@ -55,9 +55,9 @@ module('Unit | Service | intercom', function(hooks) {
       }
     };
     let service = this.owner.lookup('service:intercom');
-    
+
     setProperties(service.user, actualUser);
-    
+
     service.start();
 
     // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
@@ -129,5 +129,20 @@ module('Unit | Service | intercom', function(hooks) {
 
     assert.equal(intercomStub.calledWith('trackEvent'), true, 'Intercom track event method called');
     sinon.assert.calledWith(intercomStub, 'trackEvent', eventName, metadata);
+  });
+
+  test('Calls out to methods in intercom API', function(assert) {
+    let service = this.owner.lookup('service:intercom');
+    let methods = ['getVisitorId', 'show', 'hide', 'showMessages'];
+
+    service.boot();
+    methods.forEach(method => {
+      service[method]();
+      assert.equal(intercomStub.calledWith(method), true, `Intercom method called -- ${method}`);
+    });
+
+    service.startTour(123);
+    assert.equal(intercomStub.calledWith('startTour'), true, 'Intercom method called -- startTour');
+    sinon.assert.calledWith(intercomStub, 'startTour', 123);
   });
 });
