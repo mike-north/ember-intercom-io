@@ -126,6 +126,8 @@ details.
 
 `getVisitorId()` Returns the current id of the logged in user.
 
+`startTour()` Your intercom account needs to support product tours
+
 ### Events
 
 Subscribe to events in your app with event listeners:
