@@ -45,11 +45,11 @@
     "ember-source": "3.21.1",
     "ember-source-channel-url": "1.2.0",
     "ember-try": "1.2.1",
-    "eslint-plugin-ember": "9.0.0",
+    "eslint-plugin-ember": "9.1.0",
     "eslint-plugin-node": "11.1.0",
     "husky": "3.0.7",
     "loader.js": "4.7.0",
-    "qunit-dom": "1.4.0",
+    "qunit-dom": "1.5.0",
     "semantic-release": "15.12.5"
   },
   "keywords": [
