@@ -38,6 +38,7 @@ module.exports = function(environment) {
     },
     intercom: {
       appId: null // <-- REPLACE WITH YOUR INTERCOM.IO app_id
+      languageOverride: null,
     },
     APP: {
       // Here you can pass flags/options to your application instance
