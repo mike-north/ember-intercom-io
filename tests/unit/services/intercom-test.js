@@ -13,7 +13,8 @@ const mockConfig = {
       userIdProp: 'id',
       createdAtProp: 'createdAt'
     },
-    appId: '1'
+    appId: '1',
+    languageOverride: null
   }
 };
 let intercomStub;
@@ -63,6 +64,7 @@ module('Unit | Service | intercom', function(hooks) {
     // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
     let expectedBootConfig = {
       app_id: mockConfig.intercom.appId, //eslint-disable-line
+      language_override: mockConfig.intercom.languageOverride,
       name: actualUser.name,
       email: actualUser.email,
       user_hash: actualUser.hash,
@@ -95,7 +97,8 @@ module('Unit | Service | intercom', function(hooks) {
     let expectedConfig = {
       name: 'Bobby Tables',
       email: 'user@example.com',
-      app_id: mockConfig.intercom.appId //eslint-disable-line
+      app_id: mockConfig.intercom.appId, //eslint-disable-line
+      language_override: mockConfig.intercom.languageOverride
     };
 
     service.boot();
