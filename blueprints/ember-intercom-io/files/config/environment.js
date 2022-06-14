@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-module.exports = function (environment) {
+module.exports = function(environment) {
   var ENV = {
     modulePrefix: '<%= dasherizedPackageName %>',
     environment: environment,
@@ -19,14 +19,12 @@ module.exports = function (environment) {
         'https://nexus-websocket-a.intercom.io',
         'https://nexus-websocket-b.intercom.io',
         'wss://nexus-websocket-a.intercom.io',
-        'wss://nexus-websocket-b.intercom.io'
-      ].join(' '),
+        'wss://nexus-websocket-b.intercom.io'].join(' '),
       'img-src': [
         'data:',
         'http://localhost:4200',
         'https://static.intercomcdn.com',
-        'https://js.intercomcdn.com'
-      ].join(' '),
+        'https://js.intercomcdn.com'].join(' '),
       'default-src': 'http://localhost:4200',
       'script-src': ['http://localhost:4200', 'https://widget.intercom.io', 'https://js.intercomcdn.com'].join(' '),
       'media-src': ['https://js.intercomcdn.com'].join(' '),
@@ -63,6 +61,7 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
+    
   }
 
   return ENV;
