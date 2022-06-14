@@ -26,9 +26,15 @@ module.exports = function(environment) {
         'https://static.intercomcdn.com',
         'https://js.intercomcdn.com'].join(' '),
       'default-src': 'http://localhost:4200',
-      'script-src': ['http://localhost:4200', 'https://widget.intercom.io', 'https://js.intercomcdn.com'].join(' '),
-      'media-src': ['https://js.intercomcdn.com'].join(' '),
-      'style-src': ['http://localhost:4200', "'unsafe-inline'"].join(' ')
+      'script-src': [
+        'http://localhost:4200',
+        'https://widget.intercom.io',
+        'https://js.intercomcdn.com'].join(' '),
+      'media-src': [
+        'https://js.intercomcdn.com'].join(' '),
+      'style-src': [
+        'http://localhost:4200', 
+        '\'unsafe-inline\''].join(' ')
     },
     intercom: {
       appId: null, // <-- REPLACE WITH YOUR INTERCOM.IO app_id
@@ -61,7 +67,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    
   }
 
   return ENV;
