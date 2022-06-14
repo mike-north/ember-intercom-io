@@ -33,7 +33,7 @@ module.exports = function(environment) {
       'media-src': [
         'https://js.intercomcdn.com'].join(' '),
       'style-src': [
-        'http://localhost:4200', 
+        'http://localhost:4200',
         '\'unsafe-inline\''].join(' ')
     },
     intercom: {
@@ -67,6 +67,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+  
   }
 
   return ENV;

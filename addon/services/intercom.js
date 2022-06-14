@@ -95,9 +95,9 @@ export default Service.extend(Evented, {
   isBooted: false,
   _hasUserContext: computed('user', '_userEmailProp', '_userIdProp', function() {
     return (
-      !!get(this, 'user') && 
+      !!get(this, 'user') &&
       (!!get(this, '_userEmailProp') || !!get(this, '_userIdProp'))
-      );
+    );
   }),
   /**
    * Reports the number of unread messages
