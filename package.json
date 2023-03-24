@@ -44,7 +44,7 @@
     "ember-sinon-qunit": "4.0.1",
     "ember-source": "4.11.0",
     "ember-source-channel-url": "1.2.0",
-    "ember-try": "1.2.1",
+    "ember-try": "2.0.0",
     "eslint-plugin-ember": "10.6.1",
     "eslint-plugin-node": "11.1.0",
     "husky": "3.0.7",
