@@ -289,6 +289,7 @@ export default Service.extend(Evented, {
    */
   _onUnreadCountChange(count) {
     this.set('unreadCount', Number(count));
+    this.trigger('unreadCountChange');
   },
 
   _addEventHandlers() {
