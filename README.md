@@ -128,6 +128,8 @@ details.
 
 `startTour()` Your intercom account needs to support product tours
 
+`startSurvey()`
+
 ### Events
 
 Subscribe to events in your app with event listeners:
