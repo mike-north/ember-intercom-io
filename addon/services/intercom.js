@@ -264,6 +264,19 @@ export default Service.extend(Evented, {
   },
 
   /**
+   * If you would like to trigger a survey based on an action a user or visitor
+   * takes in your site or application, you can use this API method.
+   * You need to call this method with the id of the survey you wish to show.
+   * The id of the survey can be found in the “Additional ways to share your
+   * survey” section of the survey editor as well as in the URL of the editor.
+   * @public
+   * @param  {number} surveyId Survey ID to trigger
+   */
+  startSurvey(surveyId) {
+    return this.get('api')('startSurvey', surveyId);
+  },
+
+  /**
    * Private on hide
    * @private
    * @return {[type]} [description]
