@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
     modulePrefix: 'dummy',
     environment: environment,
@@ -33,7 +33,8 @@ module.exports = function(environment) {
       'style-src': ['http://localhost:4200', "'unsafe-inline'"].join(' ')
     },
     intercom: {
-      appId: process.env.INTERCOM_APP_ID || 'null'
+      appId: process.env.INTERCOM_APP_ID || 'null',
+      languageOverride: process.env.INTERCOM_LANGUAGE_OVERRIDE || 'null'
     },
     APP: {
       // Here you can pass flags/options to your application instance

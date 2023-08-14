@@ -130,6 +130,13 @@ export default Service.extend(Evented, {
    */
   appId: alias('config.appId'),
 
+  /**
+   * @private
+   * alias for languageOverride
+   * @type {[type]}
+   */
+  languageOverride: alias('config.languageOverride'),
+
   start(bootConfig = {}) {
     let _bootConfig = assign(get(this, '_intercomBootConfig'), bootConfig);
     this.boot(_bootConfig);
@@ -325,7 +332,8 @@ export default Service.extend(Evented, {
     if (this.get('autoUpdate') && this.get('isBooted')) {
       let user = this.get('_computedUser');
       let appId = this.get('appId');
-      let config = assign({ app_id: appId}, user );
+      let languageOverride = this.get('languageOverride');
+      let config = assign({ app_id: appId, language_override: languageOverride }, user);
       this.update(config);
     }
   }),
@@ -373,13 +381,14 @@ export default Service.extend(Evented, {
 
   _intercomBootConfig: computed('config', 'user.@each', '_hasUserContext', 'hideDefaultLauncher', function() {
     let appId = get(this, 'config.appId');
+    let languageOverride = get(this, 'config.languageOverride');
     let user = get(this, '_computedUser');
     let _hasUserContext = get(this, '_hasUserContext');
     let hideDefaultLauncher = get(this, 'hideDefaultLauncher');
 
     assert('You must supply an "ENV.intercom.appId" in your "config/environment.js" file.', appId);
 
-    let obj = { app_id: appId };
+    let obj = { app_id: appId, language_override: languageOverride };
     if (hideDefaultLauncher) {
       obj.hideDefaultLauncher = true;
     }

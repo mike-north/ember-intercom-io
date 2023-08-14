@@ -37,7 +37,8 @@ module.exports = function(environment) {
         '\'unsafe-inline\''].join(' ')
     },
     intercom: {
-      appId: null // <-- REPLACE WITH YOUR INTERCOM.IO app_id
+      appId: null, // <-- REPLACE WITH YOUR INTERCOM.IO app_id
+      languageOverride: null
     },
     APP: {
       // Here you can pass flags/options to your application instance
@@ -66,7 +67,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+  
   }
 
   return ENV;

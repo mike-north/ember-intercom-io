@@ -21,7 +21,8 @@ const mockConfig = {
       userIdProp: 'id',
       createdAtProp: 'createdAt'
     },
-    appId: '1'
+    appId: '1',
+    languageOverride: 'en'
   }
 };
 
