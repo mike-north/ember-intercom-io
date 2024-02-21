@@ -144,5 +144,9 @@ module('Unit | Service | intercom', function(hooks) {
     service.startTour(123);
     assert.equal(intercomStub.calledWith('startTour'), true, 'Intercom method called -- startTour');
     sinon.assert.calledWith(intercomStub, 'startTour', 123);
+
+    service.startSurvey(456);
+    assert.equal(intercomStub.calledWith('startSurvey'), true, 'Intercom method called -- startSurvey');
+    sinon.assert.calledWith(intercomStub, 'startSurvey', 456);
   });
 });
