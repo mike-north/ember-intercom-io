@@ -1,4 +1,3 @@
-import { assign } from '@ember/polyfills';
 import Service from '@ember/service';
 import { computed, get, observer, set } from '@ember/object';
 import { assert, warn } from '@ember/debug';
@@ -131,7 +130,7 @@ export default Service.extend(Evented, {
   appId: alias('config.appId'),
 
   start(bootConfig = {}) {
-    let _bootConfig = assign(get(this, '_intercomBootConfig'), bootConfig);
+    let _bootConfig = Object.assign(get(this, '_intercomBootConfig'), bootConfig);
     this.boot(_bootConfig);
   },
 
@@ -325,7 +324,7 @@ export default Service.extend(Evented, {
     if (this.get('autoUpdate') && this.get('isBooted')) {
       let user = this.get('_computedUser');
       let appId = this.get('appId');
-      let config = assign({ app_id: appId}, user );
+      let config = Object.assign({ app_id: appId}, user );
       this.update(config);
     }
   }),
@@ -385,7 +384,7 @@ export default Service.extend(Evented, {
     }
 
     if (_hasUserContext) {
-      obj = assign({}, obj, user);
+      obj = Object.assign({}, obj, user);
     }
 
     return normalizeIntercomMetadata(obj);
