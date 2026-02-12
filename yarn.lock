@@ -351,6 +351,11 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.20.2.tgz#d1b9000752b18d0877cff85a5c376ce5c3121629"
   integrity sha512-8RvlJG2mj4huQ4pZ+rU9lqKi9ZKiRmuvGuM2HlWmkmgOhbs6zEAw6IEiJ5cQqGbDzGZOhwuOQNtZMi/ENLjZoQ==
 
+"@babel/helper-plugin-utils@^7.28.6":
+  version "7.28.6"
+  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.28.6.tgz#6f13ea251b68c8532e985fd532f28741a8af9ac8"
+  integrity sha512-S9gzZ/bz83GRysI7gAD4wPT/AI3uCnY+9xn+Mx/KPs2JwHJIz1W8PZkg2cqyt3RNOBM8ejcXhV6y8Og7ly/Dug==
+
 "@babel/helper-remap-async-to-generator@^7.16.0", "@babel/helper-remap-async-to-generator@^7.16.4":
   version "7.16.4"
   resolved "https://registry.yarnpkg.com/@babel/helper-remap-async-to-generator/-/helper-remap-async-to-generator-7.16.4.tgz#5d7902f61349ff6b963e07f06a389ce139fbfe6e"
@@ -868,6 +873,13 @@
   integrity sha512-tIoPpGBR8UuM4++ccWN3gifhVvQu7ZizuR1fklhRJrd5ewgbkUS+0KVFeWWxELtn18NTLoW32XV7zyOgIAiz+w==
   dependencies:
     "@babel/helper-plugin-utils" "^7.20.2"
+
+"@babel/plugin-syntax-decorators@^7.23.3":
+  version "7.28.6"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-decorators/-/plugin-syntax-decorators-7.28.6.tgz#8c3293a0fef033e4c786b35ce1e159fc1d676153"
+  integrity sha512-71EYI0ONURHJBL4rSFXnITXqXrrY8q4P0q006DPfN+Rk+ASM+++IBXem/ruokgBZR8YNEWZ8R6B+rCb8VcUTqA==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.28.6"
 
 "@babel/plugin-syntax-dynamic-import@^7.8.3":
   version "7.8.3"
@@ -1970,6 +1982,16 @@
     silent-error "^1.1.1"
     util.promisify "^1.0.0"
 
+"@embroider/addon-shim@^1.8.9":
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.10.2.tgz#5164c65de0fd242422594c2f94b3c5eab4ab8e36"
+  integrity sha512-EfI9cJ5/3QSUJtwm7x1MXrx3TEa2p7RNgSHefy7fvGm8/DP1xUFL25nST1NaHbHcqR1UhMlrTtv5iUIDoVzeQQ==
+  dependencies:
+    "@embroider/shared-internals" "^3.0.1"
+    broccoli-funnel "^3.0.8"
+    common-ancestor-path "^1.0.1"
+    semver "^7.3.8"
+
 "@embroider/core@0.33.0", "@embroider/core@^0.33.0":
   version "0.33.0"
   resolved "https://registry.yarnpkg.com/@embroider/core/-/core-0.33.0.tgz#0fb1752d6e34ea45368e65c42e13220a57ffae76"
@@ -2049,6 +2071,25 @@
     js-string-escape "^1.0.1"
     lodash "^4.17.21"
     resolve-package-path "^4.0.1"
+    semver "^7.3.5"
+    typescript-memoize "^1.0.1"
+
+"@embroider/shared-internals@^3.0.1":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-3.0.2.tgz#0e10926956f682e3dd5621b911e4c3eb36df3816"
+  integrity sha512-/SusdG+zgosc3t+9sPFVKSFOYyiSgLfXOT6lYNWoG1YtnhWDxlK4S8leZ0jhcVjemdaHln5rTyxCnq8oFLxqpQ==
+  dependencies:
+    babel-import-util "^3.0.1"
+    debug "^4.3.2"
+    ember-rfc176-data "^0.3.17"
+    fs-extra "^9.1.0"
+    is-subdir "^1.2.0"
+    js-string-escape "^1.0.1"
+    lodash "^4.17.21"
+    minimatch "^3.0.4"
+    pkg-entry-points "^1.1.1"
+    resolve-package-path "^4.0.1"
+    resolve.exports "^2.0.2"
     semver "^7.3.5"
     typescript-memoize "^1.0.1"
 
@@ -2949,6 +2990,18 @@
   dependencies:
     "@types/mime" "^1"
     "@types/node" "*"
+
+"@types/sinon@^17.0.3":
+  version "17.0.4"
+  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-17.0.4.tgz#fd9a3e8e07eea1a3f4a6f82a972c899e5778f369"
+  integrity sha512-RHnIrhfPO3+tJT0s7cFaXGZvsL4bbR3/k7z3P312qMS4JaS2Tk+KiwiLx1S0rQ56ERj00u1/BtdyVd0FY+Pdew==
+  dependencies:
+    "@types/sinonjs__fake-timers" "*"
+
+"@types/sinonjs__fake-timers@*":
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/@types/sinonjs__fake-timers/-/sinonjs__fake-timers-15.0.1.tgz#49f731d9453f52d64dd79f5a5626c1cf1b81bea4"
+  integrity sha512-Ko2tjWJq8oozHzHV+reuvS5KYIRAokHnGbDwGh/J64LntgpbuylF74ipEL24HCyRjf9FOlBiBHWBR1RlVKsI1w==
 
 "@types/sizzle@*":
   version "2.3.3"
@@ -3872,6 +3925,11 @@ babel-import-util@^1.1.0:
   resolved "https://registry.yarnpkg.com/babel-import-util/-/babel-import-util-1.3.0.tgz#dc9251ea39a7747bd586c1c13b8d785a42797f8e"
   integrity sha512-PPzUT17eAI18zn6ek1R3sB4Krc/MbnmT1MkZQFmyhjoaEGBVwNABhfVU9+EKcDSKrrOm9OIpGhjxukx1GCiy1g==
 
+babel-import-util@^3.0.0, babel-import-util@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/babel-import-util/-/babel-import-util-3.0.1.tgz#62dd0476e855bf57522e1d0027916dc0c0b0fdb2"
+  integrity sha512-2copPaWQFUrzooJVIVZA/Oppx/S/KOoZ4Uhr+XWEQDMZ8Rvq/0SNQpbdIyMBJ8IELWt10dewuJw+tX4XjOo7Rg==
+
 babel-loader@^8.0.6:
   version "8.2.3"
   resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.2.3.tgz#8986b40f1a64cacfcb4b8429320085ef68b1342d"
@@ -4455,6 +4513,13 @@ before-after-hook@^2.0.0:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.2.2.tgz#a6e8ca41028d90ee2c24222f201c90956091613e"
   integrity sha512-3pZEU3NT5BFUo/AD5ERPWOgQOCZITni6iavr5AUw5AUwQjMlI0kzu5btnyD39AF0gUEsDPwJT+oY1ORBJijPjQ==
+
+better-path-resolve@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/better-path-resolve/-/better-path-resolve-1.0.0.tgz#13a35a1104cdd48a7b74bf8758f96a1ee613f99d"
+  integrity sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==
+  dependencies:
+    is-windows "^1.0.0"
 
 big.js@^5.2.2:
   version "5.2.2"
@@ -5918,6 +5983,11 @@ commander@^4.1.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
   integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
 
+common-ancestor-path@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/common-ancestor-path/-/common-ancestor-path-1.0.1.tgz#4f7d2d1394d91b7abdf51871c62f71eadb0182a7"
+  integrity sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==
+
 common-tags@^1.8.0:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.8.2.tgz#94ebb3c076d26032745fd54face7f688ef5ac9c6"
@@ -6479,6 +6549,13 @@ debug@^3.0.1, debug@^3.1.0, debug@^3.1.1:
   dependencies:
     ms "^2.1.1"
 
+debug@^4.3.2:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.4.3.tgz#c6ae432d9bd9662582fce08709b038c58e9e3d6a"
+  integrity sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==
+  dependencies:
+    ms "^2.1.3"
+
 debuglog@*, debuglog@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/debuglog/-/debuglog-1.0.1.tgz#aa24ffb9ac3df9a2351837cfb2d279360cd78492"
@@ -6513,6 +6590,14 @@ decompress-response@^3.3.0:
   integrity sha1-gKTdMjdIOEv6JICDYirt7Jgq3/M=
   dependencies:
     mimic-response "^1.0.0"
+
+decorator-transforms@^2.0.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/decorator-transforms/-/decorator-transforms-2.3.1.tgz#1d34bc50b89fed5730b240c87a555a28ab8958fc"
+  integrity sha512-PDOk74Zqqy0946Lx4ckXxbgG6uhPScOICtrxL/pXmfznxchqNee0TaJISClGJQe6FeT8ohGqsOgdjfahm4FwEw==
+  dependencies:
+    "@babel/plugin-syntax-decorators" "^7.23.3"
+    babel-import-util "^3.0.0"
 
 deep-extend@^0.6.0:
   version "0.6.0"
@@ -7376,16 +7461,16 @@ ember-router-generator@^2.0.0:
     "@babel/traverse" "^7.4.5"
     recast "^0.18.1"
 
-ember-sinon-qunit@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/ember-sinon-qunit/-/ember-sinon-qunit-4.0.1.tgz#7b8e2fde612406de9a49b13bd85aa8b6997b2074"
-  integrity sha512-qOmcT4InAYOJJ/ypoSYjDJZmTIZpSbTiCHly3U0pE85aPu8PBcNY2ppAXN8ymyZRUV5h5mA956MZZO97kqNjbA==
+ember-sinon-qunit@7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/ember-sinon-qunit/-/ember-sinon-qunit-7.5.0.tgz#12e5a6a01ecfe62b185d1258a2deb7c3334c4fe7"
+  integrity sha512-wSoRqBbiytUtDFIE6DLPDZFYhoS4FH+kgHhr707HJMF5tUYpKPIruBusF9kWezj/yOrJLyLqoWFoaAJ2aG2FQw==
   dependencies:
-    broccoli-funnel "^2.0.2"
-    ember-cli-babel "^7.7.3"
-    ember-sinon "^4.1.1"
+    "@embroider/addon-shim" "^1.8.9"
+    "@types/sinon" "^17.0.3"
+    decorator-transforms "^2.0.0"
 
-ember-sinon@4.1.1, ember-sinon@^4.1.1:
+ember-sinon@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ember-sinon/-/ember-sinon-4.1.1.tgz#ff6db9e3b9548e269386d9efe1c381e165f03ba5"
   integrity sha512-CmLjy7LGcTw2uP0WdFSPuXYbI7rwB4U/5EOtVU5h2jXtItrnspLIXBL50kigDzwv+lgE8XhfDVPbJ1QMrIXWXg==
@@ -10289,6 +10374,13 @@ is-string@^1.0.5, is-string@^1.0.7:
   dependencies:
     has-tostringtag "^1.0.0"
 
+is-subdir@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/is-subdir/-/is-subdir-1.2.0.tgz#b791cd28fab5202e91a08280d51d9d7254fd20d4"
+  integrity sha512-2AT6j+gXe/1ueqbW6fLZJiIw3F8iXGJtt0yDrZaBhAZEG1raiTxKWU+IPqMCzQAXOUCKdA4UDMgacKH25XG2Cw==
+  dependencies:
+    better-path-resolve "1.0.0"
+
 is-symbol@^1.0.2, is-symbol@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.4.tgz#a6dac93b635b063ca6872236de88910a57af139c"
@@ -10322,7 +10414,7 @@ is-weakref@^1.0.1:
   dependencies:
     call-bind "^1.0.0"
 
-is-windows@^1.0.1, is-windows@^1.0.2:
+is-windows@^1.0.0, is-windows@^1.0.1, is-windows@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
   integrity sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==
@@ -12052,7 +12144,7 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-ms@^2.0.0, ms@^2.1.1:
+ms@^2.0.0, ms@^2.1.1, ms@^2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
@@ -13473,6 +13565,11 @@ pkg-dir@^4.1.0, pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
+pkg-entry-points@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/pkg-entry-points/-/pkg-entry-points-1.1.1.tgz#d5cd87f934e873bf73143ed1d0baf637e5f8fda4"
+  integrity sha512-BhZa7iaPmB4b3vKIACoppyUoYn8/sFs17VJJtzrzPZvEnN2nqrgg911tdL65lA2m1ml6UI3iPeYbZQ4VXpn1mA==
+
 pkg-up@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/pkg-up/-/pkg-up-2.0.0.tgz#c819ac728059a461cab1c3889a2be3c49a004d7f"
@@ -14531,6 +14628,11 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
+resolve.exports@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/resolve.exports/-/resolve.exports-2.0.3.tgz#41955e6f1b4013b7586f873749a635dea07ebe3f"
+  integrity sha512-OcXjMsGdhL4XnbShKpAcSqPMzQoYkYyhbEaeSko47MjRP9NfEQMhZkXL1DoFlt9LWQn4YttrdnV6X2OiyzBi+A==
+
 resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.1, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.15.1, resolve@^1.17.0, resolve@^1.20.0, resolve@^1.3.3, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.8.1:
   version "1.20.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
@@ -14880,6 +14982,11 @@ semver@^7.3.7:
   integrity sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==
   dependencies:
     lru-cache "^6.0.0"
+
+semver@^7.3.8:
+  version "7.7.4"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.4.tgz#28464e36060e991fa7a11d0279d2d3f3b57a7e8a"
+  integrity sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==
 
 semver@~5.1.0:
   version "5.1.1"
